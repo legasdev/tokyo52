@@ -1,12 +1,12 @@
 const
     path = require("path"),
-    { CleanWebpackPlugin } = require('clean-webpack-plugin'),
     BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin,
+    { CleanWebpackPlugin } = require('clean-webpack-plugin'),
     MiniCssExtractPlugin = require('mini-css-extract-plugin'),
     TerserWebpackPlugin = require('terser-webpack-plugin'),
     autoprefixer = require('autoprefixer'),
-    HtmlWebpackPlugin = require('html-webpack-plugin'),
-    CopyWebpackPlugin = require('copy-webpack-plugin');
+    CopyWebpackPlugin = require('copy-webpack-plugin'),
+    HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // style files regexes
 const
@@ -18,14 +18,15 @@ const
     isProduction = !isDevelopment;
 
 const
-    mode = isDevelopment ? 'development' : 'production'; // production or development
-    // isDevelopment = mode !== 'production';
+    mode = isDevelopment ? 'development' : 'production';
 
 const
     nameFiles = (firstName, typeFile) =>
         isDevelopment
             ? `[${firstName}].${typeFile}`
-            : `[${firstName}].[contenthash].${typeFile}`;
+            : `[${firstName}]-[contenthash].${typeFile}`;
+
+
 
 const cssLoaders = (extra) => {
     const loaders = [
@@ -62,15 +63,22 @@ const cssLoaders = (extra) => {
 };
 
 module.exports = {
-    context: path.resolve(__dirname),
+    context: __dirname,
     mode,
     devtool: isDevelopment ? 'source-map' : '',
     entry: {
-        main: ['./src/less/home/index.less', './src/js/home/index.js'],
-        about: ['./src/less/about/index.less', './src/js/about/index.js']
+        common: './src/js/common.js',
+        main: [
+            './src/less/home/index.less',
+            './src/js/home/index.js'
+        ],
+        about: [
+            './src/less/about/index.less',
+            './src/js/about/index.js'
+        ],
     },
     output: {
-        path: path.resolve('./build/'),
+        path: path.resolve(__dirname, 'build/'),
         publicPath: '/',
         filename: nameFiles('name', 'js'),
         chunkFilename: nameFiles('name', 'js')
@@ -78,10 +86,13 @@ module.exports = {
     resolve: {
         alias: {
             '@js': path.resolve(__dirname, './src/js/'),
-            '@less': path.resolve(__dirname, `./src/less/`),
-            // '@img': path.resolve(__dirname, `./src/img/`),
-            // '@font': path.resolve(__dirname, `./src/font/`),
+            '@less': path.resolve(__dirname, './src/less/'),
+            // '@img': path.resolve(__dirname, `${pathToStatic}/img/`),
+            // '@font': path.resolve(__dirname, `${pathToStatic}/font/`),
         }
+    },
+    devServer: {
+        port: 8000
     },
     optimization: {
         splitChunks: {
@@ -93,20 +104,16 @@ module.exports = {
             new TerserWebpackPlugin({
                 cache: false,
                 parallel: true,
-                sourceMap: isDevelopment, // Must be set to true if using source-maps in production
+                sourceMap: isDevelopment,
                 extractComments: true,
             }),
         ],
     },
-    devServer: {
-        port: 8000
-    },
 
     plugins: [
-        // new BundleAnalyzerPlugin([]), // Показывать ли статистику по пакетам
         new HtmlWebpackPlugin({
             template: './src/index.html',
-            chunks: ['main'],
+            chunks: ['common', 'main'],
             minify: {
                 collapseWhitespace: isProduction
             }
@@ -114,7 +121,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: 'about.html',
             template: './src/about.html',
-            chunks: ['about'],
+            chunks: ['common', 'about'],
             minify: {
                 collapseWhitespace: isProduction
             }
@@ -125,8 +132,9 @@ module.exports = {
                 to: path.resolve(__dirname, 'build/img')
             }
         ]),
+        new BundleAnalyzerPlugin([]), // Показывать ли статистику по пакетам
         new CleanWebpackPlugin({
-            cleanAfterEveryBuildPatterns: ['!*.woff', '!*.woff2', '!*.ttf', '!*.eot', '!*.svg', '!*.png']
+            cleanAfterEveryBuildPatterns: ['!*.woff', '!*.woff2', '!*.ttf', '!*.eot', '!*.otf', '!*.svg', '!*.png']
         }),
         new MiniCssExtractPlugin({
             filename: nameFiles('name', 'css'),
@@ -171,7 +179,7 @@ module.exports = {
                 },
             },
             {
-                test: /\.(ttf|woff|woff2|eot)$/,
+                test: /\.(ttf|woff|woff2|eot|otf)$/,
                 loader: 'file-loader',
                 options: {
                     name: '[name].[contenthash].[ext]',

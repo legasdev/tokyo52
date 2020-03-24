@@ -4,10 +4,10 @@
   "description": "Website for tokyo52",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack --mode development",
-    "build": "cross-env NODE_ENV=production webpack --mode production",
-    "watch": "cross-env NODE_ENV=development webpack --mode development --watch",
-    "start": "cross-env NODE_ENV=development webpack-dev-server --mode development --open"
+    "build": "cross-env NODE_ENV=production webpack",
+    "dev": "cross-env NODE_ENV=development webpack",
+    "watch": "cross-env NODE_ENV=development webpack --watch",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --open"
   },
   "repository": {
     "type": "git",
@@ -19,17 +19,22 @@
     "url": "https://github.com/legasdev/tokyo52/issues"
   },
   "homepage": "https://github.com/legasdev/tokyo52#readme",
+  "dependencies": {
+    "@babel/polyfill": "^7.8.7",
+    "whatwg-fetch": "^3.0.0"
+  },
   "devDependencies": {
-    "@babel/core": "^7.9.0",
-    "@babel/preset-env": "^7.9.0",
-    "autoprefixer": "^9.7.5",
-    "babel-loader": "^8.1.0",
+    "@babel/core": "^7.8.7",
+    "@babel/preset-env": "^7.8.7",
+    "autoprefixer": "^9.7.4",
+    "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^5.1.1",
     "cross-env": "^7.0.2",
     "css-loader": "^3.4.2",
     "cssnano": "^4.1.10",
-    "file-loader": "^6.0.0",
+    "eslint-loader": "^3.0.3",
+    "file-loader": "^5.1.0",
     "html-webpack-plugin": "^4.0.1",
     "less": "^3.11.1",
     "less-loader": "^5.0.0",
@@ -42,14 +47,10 @@
     "style-loader": "^1.1.3",
     "terser-webpack-plugin": "^2.3.5",
     "webpack": "^4.42.0",
-    "webpack-bundle-analyzer": "^3.6.1",
+    "webpack-bundle-analyzer": "^3.6.0",
     "webpack-bundle-tracker": "^0.4.3",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"
-  },
-  "dependencies": {
-    "@babel/polyfill": "^7.8.7",
-    "whatwg-fetch": "^3.0.0"
   },
   "browserslist": "> 0.0001%, not dead"
 }
