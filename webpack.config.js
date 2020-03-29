@@ -87,8 +87,7 @@ module.exports = {
         alias: {
             '@js': path.resolve(__dirname, './src/js/'),
             '@less': path.resolve(__dirname, './src/less/'),
-            // '@img': path.resolve(__dirname, `${pathToStatic}/img/`),
-            // '@font': path.resolve(__dirname, `${pathToStatic}/font/`),
+            '@img': path.resolve(__dirname, `./src/img/`),
         }
     },
     devServer: {
@@ -132,7 +131,7 @@ module.exports = {
                 to: path.resolve(__dirname, 'build/img')
             }
         ]),
-        new BundleAnalyzerPlugin([]), // Показывать ли статистику по пакетам
+        // new BundleAnalyzerPlugin([]), // Показывать ли статистику по пакетам
         new CleanWebpackPlugin({
             cleanAfterEveryBuildPatterns: ['!*.woff', '!*.woff2', '!*.ttf', '!*.eot', '!*.otf', '!*.svg', '!*.png']
         }),

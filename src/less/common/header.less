@@ -1,0 +1,87 @@
+/**
+ *
+ * Шапка сайта
+ *
+*/
+
+@import '~@less/common/menu.less';
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+
+    // Модификаторы
+
+    &--styles {
+        width: 100vw;
+        height: 70px;
+        background-color: var(--color-dark);
+        transition:
+            background-color @tr-low;
+    }
+
+    &--top {
+        background-color: transparent;
+
+        & .header__logo {
+            transform: translate(-50%, 116px);
+            max-width: 473px;
+        }
+    }
+
+    // Элементы
+
+    &__wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 1440px;
+        padding: 13px 12px 18px;
+    }
+
+    &__logo {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        width: 100%;
+        max-width: 147px;
+        transform: translate(-50%, 17px);
+        transition:
+            transform @tr-low,
+            max-width @tr-low;
+
+        &-img {
+            width: 100%;
+            object-fit: contain;
+            object-position: center;
+        }
+    }
+
+    &__info {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        &-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            color: var(--color-white);
+            min-width: 121px;
+
+            &--margin-left-50 {
+                margin-left: 50px;
+            }
+
+            &--margin-left-60 {
+                margin-left: 60px;
+            }
+        }
+    }
+}

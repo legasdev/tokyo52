@@ -1,0 +1,38 @@
+@import 'variables.less';
+@import '~@less/common.less';
+@import '~@less/common/header.less';
+@import '~@less/common/link.less';
+
+.body {
+    --color-background:         @color-background;
+    --color-dark:               @color-dark;
+    --color-gray-dark:          @color-gray-dark;
+    --color-gray:               @color-gray;
+    --color-gray-light:         @color-gray-light;
+    --color-white-dark:         @color-white-dark;
+    --color-white-medium:       @color-white-medium;
+    --color-white:              @color-white;
+    --color-red:                @color-red;
+    --color-red-dark:           @color-red-dark;
+
+    --font:                     'Nunito', sans-serif;
+
+    font-family: var(--font);
+    background-color: var(--color-background);
+    color: var(--color-white);
+    background-image: url('~@img/background.png');
+    overflow-x: hidden;
+    width: 100vw;
+    min-height: 100vh;
+}
+
+.content {
+    width: 100%;
+    max-width: 1440px;
+    padding: 0 12px;
+    margin: 0 auto;
+
+    &--styles {
+        padding-top: 328px;
+    }
+}

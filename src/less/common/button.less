@@ -1,0 +1,34 @@
+/**
+ *
+ * Кнопка (основная)
+ *
+*/
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    // Модификаторы
+
+    &--styles {
+        width: 100%;
+        max-width: 242px;
+        height: 64px;
+        border-radius: 100vh;
+        color: var(--color-white);
+        font-size: 20px;
+        letter-spacing: 0.5px;
+        line-height: 27px;
+    }
+
+    &--main {
+        background: linear-gradient(90deg, var(--color-red), var(--color-red-dark));
+    }
+
+    &--stroke {
+        border: 1px solid var(--color-red);
+    }
+
+    // Элементы
+}
