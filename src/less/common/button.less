@@ -20,10 +20,15 @@
         font-size: 20px;
         letter-spacing: 0.5px;
         line-height: 27px;
+        transition: box-shadow @tr-medium;
     }
 
     &--main {
         background: linear-gradient(90deg, var(--color-red), var(--color-red-dark));
+
+        &:hover {
+            box-shadow: 0 3px 14px var(--color-red);
+        }
     }
 
     &--stroke {
