@@ -8,6 +8,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 
     // Модификаторы
 
@@ -33,6 +34,21 @@
 
     &--stroke {
         border: 1px solid var(--color-red);
+        background-color: transparent;
+        transition: background-color @tr-medium;
+
+        &:hover {
+            background-color: var(--color-red);
+        }
+    }
+
+    &--min {
+        width: 131px;
+        height: 40px;
+        font-size: 14px;
+        letter-spacing: 0.35px;
+        line-height: 19px;
+        font-weight: 300;
     }
 
     // Элементы

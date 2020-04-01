@@ -82,4 +82,93 @@
         color: var(--color-gray-light);
         margin-top: 29px;
     }
+
+    &__footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    &__price {
+        font-weight: 600;
+        color: var(--color-white);
+        font-size: 28px;
+        line-height: 28px;
+        letter-spacing: 0.84px;
+    }
+
+    &__ui {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    // Количество
+    &__input {
+        display: flex;
+        align-items: center;
+        margin-right: 20px;
+
+        &-num {
+            font-size: 28px;
+            line-height: 28px;
+            letter-spacing: 0.84px;
+            font-weight: 300;
+            color: var(--color-white-dark);
+        }
+
+        &-ui {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            margin-left: 8px;
+        }
+
+        &-btn {
+            position: relative;
+            display: flex;
+            align-items: flex-start;
+            width: 18px;
+            height: 18px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            
+            & > i {
+                display: block;
+                width: 9px;
+                height: 1px;
+                background-color: var(--color-white-dark);
+                transition: transform @tr-medium;
+
+                // &:first-child {
+                //     transform-origin: right;
+                //     transform: rotate(-36deg);
+                // }
+
+                // &:last-child {
+                //     transform-origin: left;
+                //     transform: rotate(36deg);
+                // }
+            }
+
+            &:hover > i {
+                &:first-child {
+                    transform: rotate(-46deg);
+                }
+
+                &:last-child {
+                    transform: rotate(46deg);
+                }
+            }
+
+            &--bottom {
+                transform: scaleY(-1);
+            }
+        }
+    }
 }
