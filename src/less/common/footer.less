@@ -1,0 +1,36 @@
+/**
+ *
+ * Подвал сайта
+ *
+*/
+
+.footer {
+    position: relative;
+
+    // Модификаторы
+
+    &--styles {
+        width: 100vw;
+        background-color: var(--color-dark);
+        margin-top: 146px;
+
+        &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 100vw;
+            height: 1px;
+            background-color: var(--color-gray);
+        }
+    }
+
+    // Элементы
+
+    &__wrapper {
+        width: 100%;
+        max-width: var(--screen);
+        padding: 45px 0 15px;
+        margin: 0 auto;
+    }
+}

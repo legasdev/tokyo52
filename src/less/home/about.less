@@ -1,0 +1,47 @@
+/**
+ *
+ * Контакты на главной
+ *
+*/
+
+.about {
+    display: flex;
+    flex-direction: column;
+ 
+    // Модификаторы
+
+    &--styles {
+        width: 100%;
+        margin-top: 146px;
+    }
+
+    // Элементы
+
+    &__wrapper {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin-top: 70px;
+    }
+
+    &__info {
+        flex: 1 1 auto;
+        width: 100%;
+        max-width: 605px;
+        margin-right: 16px;
+    }
+
+    &__text {
+        font-size: 18px;
+        font-weight: 300;
+        color: var(--color-white);
+        letter-spacing: .35px;
+        line-height: 26px;
+    }
+
+    &__form {
+        flex: 1 1 auto;
+        width: 100%;
+        max-width: 714px;
+    }
+}

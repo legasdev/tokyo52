@@ -1,6 +1,7 @@
 @import 'variables.less';
 @import '~@less/common.less';
 @import '~@less/common/header.less';
+@import '~@less/common/footer.less';
 @import '~@less/common/link.less';
 
 .body {
@@ -12,10 +13,16 @@
     --color-white-dark:         @color-white-dark;
     --color-white-medium:       @color-white-medium;
     --color-white:              @color-white;
+    --color-red-light:          @color-red-light;
     --color-red:                @color-red;
     --color-red-dark:           @color-red-dark;
+    
+    --color-menu-label:         @color-menu-label;
+    --color-menu-label-active:  @color-menu-label-active;
 
     --font:                     'Nunito', sans-serif;
+
+    --screen:                   calc(@screen-1440 - @screen-padding);
 
     font-family: var(--font);
     background-color: var(--color-background);
@@ -28,8 +35,7 @@
 
 .content {
     width: 100%;
-    max-width: 1440px;
-    padding: 0 12px;
+    max-width: var(--screen);
     margin: 0 auto;
 
     &--styles {

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Суши-бар "Токио"</title>
 </head>
 <body class="body">
 
-    <!-- header--top -->
-    <header class="header header--styles ">
+    <header class="header header--styles header--top">
         <div class="header__wrapper">
             <nav class="menu menu--item-left-margin">
                 <a class="menu__item menu__item--active" href="/" title="Главная">Главная</a>
@@ -20,7 +20,7 @@
                 <img class="header__logo-img" src="/img/logo.png" srcset="/img/logo.png 1x, /img/logo@2x.png 2x" alt="Суши-бар Токио" />
             </a>
             <div class="header__info">
-                <p class="header__info-wrapper">с 9:00 до 23:00</p>
+                <p class="header__info-wrapper header__info-wrapper--row">с&nbsp;<time datetime="09:00:00">9:00</time>&nbsp;до&nbsp;<time datetime="23:00:00">23:00</time></p>
                 <div class="header__info-wrapper header__info-wrapper--margin-left-60">
                     <a class="link link--styles" href="tel:89211558568">+7 (921) 155-85-68</a>
                     <a class="link link--styles" href="mailto:mail@mail.ru">mail@mail.ru</a>
@@ -61,16 +61,25 @@
                         <p class="card__structure">Филе тунца, обжаренное в черном перце, лосось, сливочный сыр, перец Халапенью, авокадо, айсберг, томат огурец, соус спайси.</p>
                         <div class="card__options">
                             <div class="card__option">
-                                <p class="card__option-price">220.-</p>
-                                <p class="card__option-description">опаленный</p>
+                                <input class="card__option-input" name="contact" type="radio" id="sushi_1">
+                                <label class="card__option-label" for="sushi_1">
+                                    <p class="card__option-price">220.-</p>
+                                    <p class="card__option-description">опаленный</p>
+                                </label>
                             </div>
                             <div class="card__option">
-                                <p class="card__option-price">230.-</p>
-                                <p class="card__option-description">«хот»</p>
+                                <input class="card__option-input" name="contact" type="radio" id="sushi_2">
+                                <label class="card__option-label" for="sushi_2">
+                                    <p class="card__option-price">230.-</p>
+                                    <p class="card__option-description">«хот»</p>
+                                </label>
                             </div>
                             <div class="card__option">
-                                <p class="card__option-price">290.-</p>
-                                <p class="card__option-description">«биг»</p>
+                                <input class="card__option-input" name="contact" type="radio" id="sushi_3">
+                                <label class="card__option-label" for="sushi_3">
+                                    <p class="card__option-price">290.-</p>
+                                    <p class="card__option-description">«биг»</p>
+                                </label>
                             </div>
                         </div>
                         <p class="card__weight">1/260 гр.</p>
@@ -80,8 +89,140 @@
                                 <div class="card__input">
                                     <p class="card__input-num">1</p>
                                     <div class="card__input-ui">
-                                        <button class="card__input-btn"><i></i><i></i></button>
-                                        <button class="card__input-btn card__input-btn--bottom"><i></i><i></i></button>
+                                        <button class="card__input-btn"><span></span><span></span></button>
+                                        <button class="card__input-btn card__input-btn--bottom"><span></span><span></span></button>
+                                    </div>
+                                </div>
+                                <button class="btn btn--styles btn--stroke btn--min">В корзину</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="card card--styles">
+                    <div class="card__wrapper">
+                        <img class="card__img" src="img/productions/rolls/prod.png" srcset="img/productions/rolls/prod.png 1x, img/productions/rolls/prod@2x.png 2x" alt="Ролл «Филадельфия» №1" />
+                        <h3 class="h3 card__title">Ролл «Филадельфия» №1</h3>
+                        <p class="card__structure">Филе тунца, обжаренное в черном перце, лосось, сливочный сыр, перец Халапенью, авокадо, айсберг, томат огурец, соус спайси.</p>
+                        <div class="card__options">
+                            <div class="card__option">
+                                <input class="card__option-input" name="contact2" type="radio" id="sushi_41">
+                                <label class="card__option-label" for="sushi_41">
+                                    <p class="card__option-price">220.-</p>
+                                    <p class="card__option-description">опаленный</p>
+                                </label>
+                            </div>
+                            <div class="card__option">
+                                <input class="card__option-input" name="contact2" type="radio" id="sushi_42">
+                                <label class="card__option-label" for="sushi_42">
+                                    <p class="card__option-price">230.-</p>
+                                    <p class="card__option-description">«хот»</p>
+                                </label>
+                            </div>
+                            <div class="card__option">
+                                <input class="card__option-input" name="contact2" type="radio" id="sushi_43">
+                                <label class="card__option-label" for="sushi_43">
+                                    <p class="card__option-price">290.-</p>
+                                    <p class="card__option-description">«биг»</p>
+                                </label>
+                            </div>
+                        </div>
+                        <p class="card__weight">1/260 гр.</p>
+                        <div class="card__footer">
+                            <p class="card__price">200.-</p>
+                            <div class="card__ui">
+                                <div class="card__input">
+                                    <p class="card__input-num">1</p>
+                                    <div class="card__input-ui">
+                                        <button class="card__input-btn"><span></span><span></span></button>
+                                        <button class="card__input-btn card__input-btn--bottom"><span></span><span></span></button>
+                                    </div>
+                                </div>
+                                <button class="btn btn--styles btn--stroke btn--min">В корзину</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="card card--styles">
+                    <div class="card__wrapper">
+                        <img class="card__img" src="img/productions/rolls/prod.png" srcset="img/productions/rolls/prod.png 1x, img/productions/rolls/prod@2x.png 2x" alt="Ролл «Филадельфия» №1" />
+                        <h3 class="h3 card__title">Ролл «Филадельфия» №1</h3>
+                        <p class="card__structure">Филе тунца, обжаренное в черном перце, лосось, сливочный сыр, перец Халапенью, авокадо, айсберг, томат огурец, соус спайси.</p>
+                        <div class="card__options">
+                            <div class="card__option">
+                                <input class="card__option-input" name="contact7" type="radio" id="sushi_71">
+                                <label class="card__option-label" for="sushi_71">
+                                    <p class="card__option-price">220.-</p>
+                                    <p class="card__option-description">опаленный</p>
+                                </label>
+                            </div>
+                            <div class="card__option">
+                                <input class="card__option-input" name="contact7" type="radio" id="sushi_72">
+                                <label class="card__option-label" for="sushi_72">
+                                    <p class="card__option-price">230.-</p>
+                                    <p class="card__option-description">«хот»</p>
+                                </label>
+                            </div>
+                            <div class="card__option">
+                                <input class="card__option-input" name="contact7" type="radio" id="sushi_73">
+                                <label class="card__option-label" for="sushi_73">
+                                    <p class="card__option-price">290.-</p>
+                                    <p class="card__option-description">«биг»</p>
+                                </label>
+                            </div>
+                        </div>
+                        <p class="card__weight">1/260 гр.</p>
+                        <div class="card__footer">
+                            <p class="card__price">200.-</p>
+                            <div class="card__ui">
+                                <div class="card__input">
+                                    <p class="card__input-num">1</p>
+                                    <div class="card__input-ui">
+                                        <button class="card__input-btn"><span></span><span></span></button>
+                                        <button class="card__input-btn card__input-btn--bottom"><span></span><span></span></button>
+                                    </div>
+                                </div>
+                                <button class="btn btn--styles btn--stroke btn--min">В корзину</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="card card--styles">
+                    <div class="card__wrapper">
+                        <img class="card__img" src="img/productions/rolls/prod.png" srcset="img/productions/rolls/prod.png 1x, img/productions/rolls/prod@2x.png 2x" alt="Ролл «Филадельфия» №1" />
+                        <h3 class="h3 card__title">Ролл «Филадельфия» №1</h3>
+                        <p class="card__structure">Филе тунца, обжаренное в черном перце, лосось, сливочный сыр, перец Халапенью, авокадо, айсберг, томат огурец, соус спайси.</p>
+                        <div class="card__options">
+                            <div class="card__option">
+                                <input class="card__option-input" name="contact3" type="radio" id="sushi_31">
+                                <label class="card__option-label" for="sushi_31">
+                                    <p class="card__option-price">220.-</p>
+                                    <p class="card__option-description">опаленный</p>
+                                </label>
+                            </div>
+                            <div class="card__option">
+                                <input class="card__option-input" name="contact3" type="radio" id="sushi_32">
+                                <label class="card__option-label" for="sushi_32">
+                                    <p class="card__option-price">230.-</p>
+                                    <p class="card__option-description">«хот»</p>
+                                </label>
+                            </div>
+                            <div class="card__option">
+                                <input class="card__option-input" name="contact3" type="radio" id="sushi_33">
+                                <label class="card__option-label" for="sushi_33">
+                                    <p class="card__option-price">290.-</p>
+                                    <p class="card__option-description">«биг»</p>
+                                </label>
+                            </div>
+                        </div>
+                        <p class="card__weight">1/260 гр.</p>
+                        <div class="card__footer">
+                            <p class="card__price">200.-</p>
+                            <div class="card__ui">
+                                <div class="card__input">
+                                    <p class="card__input-num">1</p>
+                                    <div class="card__input-ui">
+                                        <button class="card__input-btn"><span></span><span></span></button>
+                                        <button class="card__input-btn card__input-btn--bottom"><span></span><span></span></button>
                                     </div>
                                 </div>
                                 <button class="btn btn--styles btn--stroke btn--min">В корзину</button>
@@ -90,8 +231,141 @@
                     </div>
                 </section>
             </div>
+            <a href="#" class="btn btn--styles btn--stroke btn--padding stocks__btn" title="Посмотреть все акции в Суши-баре Токио">
+                <span>Посмотреть все акции</span>
+                <img class="btn__icon" src="img/icons/arrow.svg" alt="" />
+            </a>
+        </section>
+
+        <section class="block-menu block-menu--styles">
+            <h2 class="h1">Меню</h2>
+            <div class="menu-grid menu-grid--styles block-menu__grid">
+                <a href="#" class="menu-grid__wrapper menu-grid__wrapper--big">
+                    <div class="menu-grid__inner">
+                        <img class="menu-grid__img" src="img/home/rolls@2x.png" alt="Суши и роллы">
+                    </div>
+                    <div class="menu-grid__label">
+                        <p class="menu-grid__label-text">Суши и роллы</p>
+                        <p class="menu-grid__label-info">Читаю меню в суши-баре. Я не уверена, что сейчас не матерюсь!</p>
+                    </div>
+                </a>
+                <a href="#" class="menu-grid__wrapper">
+                    <div class="menu-grid__inner">
+                        <img class="menu-grid__img" src="img/home/sets@2x.png" alt="Сеты из роллов">                        
+                    </div>
+                    <div class="menu-grid__label">
+                        <p class="menu-grid__label-text">Сеты</p>
+                        <p class="menu-grid__label-info">Читаю меню в суши-баре. Я не уверена, что сейчас не матерюсь!</p>
+                    </div>
+                </a>
+                <a href="#" class="menu-grid__wrapper">
+                    <div class="menu-grid__inner">
+                        <img class="menu-grid__img" src="img/home/rolls_hot@2x.png" alt="Горячие роллы">                        
+                    </div>
+                    <div class="menu-grid__label">
+                        <p class="menu-grid__label-text">Горячие роллы</p>
+                        <p class="menu-grid__label-info">Читаю меню в суши-баре. Я не уверена, что сейчас не матерюсь!</p>
+                    </div>
+                </a>
+                <a href="#" class="menu-grid__wrapper">
+                    <div class="menu-grid__inner">
+                        <img class="menu-grid__img" src="img/home/salad@2x.png" alt="Салаты">                        
+                    </div>
+                    <div class="menu-grid__label">
+                        <p class="menu-grid__label-text">Салаты</p>
+                        <p class="menu-grid__label-info">Читаю меню в суши-баре. Я не уверена, что сейчас не матерюсь!</p>
+                    </div>
+                </a>
+                <a href="#" class="menu-grid__wrapper">
+                    <div class="menu-grid__inner">
+                        <img class="menu-grid__img" src="img/home/hot_meat@2x.png" alt="Горячие блюда">                        
+                    </div>
+                    <div class="menu-grid__label">
+                        <p class="menu-grid__label-text">Горячие блюда</p>
+                        <p class="menu-grid__label-info">Читаю меню в суши-баре. Я не уверена, что сейчас не матерюсь!</p>
+                    </div>
+                </a>
+                <a href="#" class="menu-grid__wrapper">
+                    <div class="menu-grid__inner">
+                        <img class="menu-grid__img" src="img/home/sup@2x.png" alt="Супы">                        
+                    </div>
+                    <div class="menu-grid__label">
+                        <p class="menu-grid__label-text">Супы</p>
+                        <p class="menu-grid__label-info">Читаю меню в суши-баре. Я не уверена, что сейчас не матерюсь!</p>
+                    </div>
+                </a>
+                <a href="#" class="menu-grid__wrapper">
+                    <div class="menu-grid__inner">
+                        <img class="menu-grid__img" src="img/home/fastfood@2x.png" alt="Фаст-фуд">                        
+                    </div>
+                    <div class="menu-grid__label">
+                        <p class="menu-grid__label-text">Фаст-фуд</p>
+                        <p class="menu-grid__label-info">Читаю меню в суши-баре. Я не уверена, что сейчас не матерюсь!</p>
+                    </div>
+                </a>
+                <a href="#" class="menu-grid__wrapper">
+                    <div class="menu-grid__inner">
+                        <img class="menu-grid__img" src="img/home/child@2x.png" alt="Детское меню">                        
+                    </div>
+                    <div class="menu-grid__label">
+                        <p class="menu-grid__label-text">Детское меню</p>
+                        <p class="menu-grid__label-info">Читаю меню в суши-баре. Я не уверена, что сейчас не матерюсь!</p>
+                    </div>
+                </a>
+                <a href="#" class="menu-grid__wrapper">
+                    <div class="menu-grid__inner">
+                        <img class="menu-grid__img" src="img/home/coffee@2x.png" alt="Напитки">                        
+                    </div>
+                    <div class="menu-grid__label">
+                        <p class="menu-grid__label-text">Напитки</p>
+                        <p class="menu-grid__label-info">Читаю меню в суши-баре. Я не уверена, что сейчас не матерюсь!</p>
+                    </div>
+                </a>
+                <a href="#" class="menu-grid__wrapper menu-grid__wrapper--big">
+                    <div class="menu-grid__inner">
+                        <img class="menu-grid__img" src="img/home/desert@2x.png" alt="Десерты">                        
+                    </div>
+                    <div class="menu-grid__label">
+                        <p class="menu-grid__label-text">Десерты</p>
+                        <p class="menu-grid__label-info">Читаю меню в суши-баре. Я не уверена, что сейчас не матерюсь!</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section class="about about--styles">
+            <h2 class="h1">Напишите нам</h2>
+            <div class="about__wrapper">
+                <div class="about__info">
+                    <p class="about__text">Решили побаловать себя и своих домочадцев вкусным, изысканным блюдом? Хотите перекусить, но не испытываете желания тратить время на приготовление обеда? Тогда вам стоит заказать пиццу. Любимая миллионами людей по всему миру пицца теперь всё чаще продается на доставке. И это не удивительно, ведь временные затраты стали одним из важнейших критериев в современном мире, а среди многообразия всевозможных вкусов любой найдет именно то, что ему нужно! Пицца Рикка дает вам возможность купить пиццу в городн Нижний Новгород, не выходя из дома.</p>
+                    <p class="about__text">Мы предлагаем вам заказать пиццу с доставкой на дом. Быстрая доставка пиццы на дом стала еще удобнее. Ведь все, что вам нужно сделать, это позвонить нам по телефону 8 (831) 260-10-60 или заказать пиццу онлайн на нашем сайте. </p>
+                </div>
+                <form class="form form--styles about__form">
+                    <div class="form__wrapper">
+
+                    </div>
+                </form>
+            </div>
         </section>
     </main>
+
+    <footer class="footer footer--styles">
+        <div class="footer__wrapper">
+            <div class="footer__">
+
+            </div>
+            <div class="footer__center">
+                <p>Позвоните нам по телефону +7 (123) 456-78-80, и мы с радостью выполним ваш заказ!</p>
+            </div>
+            <div class="footer__info">
+                <address>Урень, ул. Ленина, 13/1</address>
+                <div class="footer__info-tel">
+                    <a href="tel:81234567890">+7 (123) 456-78-90</a>,  <a href="tel:81234567890">+7 (123) 456-78-90</a>
+                </div>
+                <p class="footer__info-time">Время работы: <time datetime="09:00:00">9:00</time>-<time datetime="23:00:00">23:00</time></p>
+            </div>
+        </div>
+    </footer>
 
 </body>
 </html>
