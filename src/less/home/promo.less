@@ -6,18 +6,35 @@
 
     &--styles {
         width: 100%;
+
+        .adaptive(@screen-1280; {
+            flex-direction: column-reverse;
+            align-items: center;
+        });
     }
 
     // Элементы
 
     &__info {
         flex: 1 1 auto;
+
+        .adaptive(@screen-1280; {
+            margin-top: 80px;
+        });
+
+        .adaptive(@screen-620; {
+            flex: unset;
+            width: 100%;
+        });
     }
 
     &__img-wrapper {
         flex: 1 1 auto;
         max-width: 50%;
 
+        .adaptive(@screen-1280; {
+            max-width: 100%;
+        });
     }
 
     &__img {
@@ -38,6 +55,11 @@
         &--margin-top {
             margin-top: 21px;
         }
+
+        .adaptive(@screen-620; {
+            font-size: 16px;
+            line-height: 23px;
+        });
     }
 
     &__btns {
@@ -48,6 +70,18 @@
 
         &--margin-left {
             margin-left: 70px;
+
+            .adaptive(@screen-620; {
+                margin: 30px 0 0; 
+            });
         }
+
+        .adaptive(@screen-1280; {
+            margin-top: 80px;
+        });
+
+        .adaptive(@screen-620; {
+            flex-direction: column;
+        });
     }
 }

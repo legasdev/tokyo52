@@ -29,8 +29,30 @@
         margin-bottom: 12px;
         overflow: hidden;
 
+        .adaptive(@screen-1440; {
+            max-width: 278px;
+            height: 290px;
+        });
+
+        .adaptive(@screen-1280; {
+            max-width: 296px;
+            height: 308px;
+        });
+
+        .adaptive(@screen-620; {
+            max-width: 100%;
+        });
+
         &--big {
             max-width: 714px;
+
+            .adaptive(@screen-1440; {
+                max-width: 572px;
+            });
+
+            .adaptive(@screen-1280; {
+                max-width: 608px;
+            });
         }
     }
 
@@ -79,6 +101,10 @@
             font-size: 28px;
             letter-spacing: 0.45;
             line-height: 28px;
+
+            .adaptive(@screen-1440; {
+                font-size: 28px;
+            });
         }
 
         &-info {
@@ -112,6 +138,10 @@
                 background-color: var(--color-red);
             }
         }
+
+        .adaptive(@screen-1440; {
+            top: 212px;
+        });
     }
 
     &__wrapper:hover > &__label {

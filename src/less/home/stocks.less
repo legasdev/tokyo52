@@ -13,6 +13,10 @@
     &--styles {
         width: 100%;
         margin-top: 146px;
+
+        .adaptive(@screen-620; {
+            margin-top: 80px;
+        });
     }
 
     // Элементы
@@ -22,6 +26,14 @@
         justify-content: space-between;
         width: 100%;
         margin-top: 95px;
+
+        .adaptive(@screen-1280; {
+            flex-wrap: wrap;
+        });
+
+        .adaptive(@screen-620; {
+            margin-top: 53px;
+        });
     }
 
     &__btn {

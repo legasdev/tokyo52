@@ -13,11 +13,19 @@
     &--styles {
         width: 100%;
         margin-top: 146px;
+
+        .adaptive(@screen-620; {
+            margin-top: 80px;
+        });
     }
 
     // Элементы
 
     &__grid {
         margin-top: 70px;
+
+        .adaptive(@screen-620; {
+            margin-top: 53px;
+        });
     }
 }

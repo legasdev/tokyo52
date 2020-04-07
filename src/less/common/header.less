@@ -34,6 +34,10 @@
             background-color: var(--color-gray);
             transition: opacity @tr-low;
         }
+
+        .adaptive(@screen-620; {
+            padding: 0 16px;
+        });
     }
 
     &--top {
@@ -42,6 +46,10 @@
         & .header__logo {
             transform: translate(-50%, 116px);
             max-width: 473px;
+
+            .adaptive(@screen-620; {
+                left: 50%;
+            });
         }
 
         &:after {
@@ -70,13 +78,25 @@
         transform: translate(-50%, 17px);
         transition:
             transform @tr-low,
-            max-width @tr-low;
+            max-width @tr-low,
+            left @tr-low;
 
         &-img {
             width: 100%;
             object-fit: contain;
             object-position: center;
         }
+
+        .adaptive(@screen-620; {
+            max-width: 111px;
+            left: 60%;
+        });
+
+        .adaptive(@screen-328; {
+            max-width: 71px;
+            transform: translate(-50%, 20px);
+            left: 68%;
+        });
     }
 
     &__info {
@@ -93,15 +113,49 @@
 
             &--margin-left-50 {
                 margin-left: 50px;
+
+                .adaptive(@screen-1440; {
+                    margin-left: 19px;
+                });
+
+                .adaptive(@screen-1280; {
+                    display: none;
+                });
             }
 
             &--margin-left-60 {
                 margin-left: 60px;
+
+                .adaptive(@screen-1440; {
+                    margin-left: 29px;
+                });
+
+                .adaptive(@screen-1280; {
+                    margin-left: 0;
+                }); 
             }
 
             &--row {
                 flex-direction: row;
+
+                .adaptive(@screen-1280; {
+                    display: none;
+                });
             }
+
+            .adaptive(@screen-1280; {
+                align-items: flex-start;
+            });
+
+            .adaptive(@screen-620; {
+                font-size: 12px;
+            });
         }
+    }
+
+    &__nav {
+        .adaptive(@screen-1280; {
+            display: none;
+        });
     }
 }

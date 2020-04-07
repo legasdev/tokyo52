@@ -13,6 +13,10 @@
     &--styles {
         width: 100%;
         margin-top: 146px;
+
+        .adaptive(@screen-620; {
+            margin-top: 80px;
+        });
     }
 
     // Элементы
@@ -22,6 +26,16 @@
         justify-content: space-between;
         width: 100%;
         margin-top: 70px;
+
+        .adaptive(@screen-1280; {
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        });
+
+        .adaptive(@screen-620; {
+            margin-top: 53px;
+        });
     }
 
     &__info {
@@ -29,6 +43,15 @@
         width: 100%;
         max-width: 605px;
         margin-right: 16px;
+
+        .adaptive(@screen-1440; {
+            max-width: 522px;
+        });
+
+        .adaptive(@screen-1280; {
+            margin: 0 0 60px;
+            max-width: 100%;
+        });        
     }
 
     &__text {
@@ -37,11 +60,23 @@
         color: var(--color-white);
         letter-spacing: .35px;
         line-height: 26px;
+
+        .adaptive(@screen-1440; {
+            font-size: 16px;
+        });
     }
 
     &__form {
         flex: 1 1 auto;
         width: 100%;
         max-width: 714px;
+
+        .adaptive(@screen-1440; {
+            max-width: 588px;
+        });
+
+        .adaptive(@screen-1280; {
+            max-width: 100%;
+        });  
     }
 }

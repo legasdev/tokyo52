@@ -13,6 +13,10 @@
     &--item-left-margin {
         & > .menu__item + .menu__item {
             margin-left: 53px;
+
+            .adaptive(@screen-1440; {
+                margin-left: 30px;
+            });
         }
     }
 

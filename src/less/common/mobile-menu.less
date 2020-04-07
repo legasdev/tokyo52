@@ -1,0 +1,80 @@
+/**
+ *
+ * Мобильное меню
+ *
+*/
+
+.mobile-menu {
+    display: none;
+
+    // Модификаторы
+
+    &--styles {
+        .adaptive(@screen-1280; {
+            display: block;
+        });
+    }
+
+    // Элементы
+
+    // Кнопка меню
+    &__btn {
+        position: relative;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    
+        // Модификаторы
+    
+        &--styles {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+    
+            & > span {
+                position: absolute;
+                width: 20px;
+                height: 2px;
+                background-color: var(--color-white);
+                border-radius: 100vh;
+                transition: 
+                    transform @tr-medium,
+                    opacity @tr-medium;
+    
+                &:nth-child(1) {
+                    top: 8px;
+                    transform-origin: left;
+                }
+    
+                &:nth-child(3) {
+                    bottom: 8px;
+                    transform-origin: left;
+                }
+            }
+    
+            .adaptive(@screen-1280; {
+                display: flex;
+            });
+        }
+    }
+
+    &__checkbox {
+        display: none;
+    }
+
+    &__checkbox:checked + &__btn > span {
+        &:nth-child(1) {
+            transform: rotate(45deg) scaleX(0.85);
+        }
+
+        &:nth-child(2) {
+            opacity: 0;
+        }
+
+        &:nth-child(3) {
+            transform: rotate(-45deg) scaleX(0.85);
+        }
+    }
+}
+

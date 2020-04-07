@@ -4,6 +4,18 @@
  *
 */
 
+.underline() {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-white);
+    opacity: 0;
+    transition: opacity @tr-fast;
+}
+
 .link {
     position: relative;
     
@@ -11,21 +23,44 @@
 
     &--styles {
         color: var(--color-white);
+        white-space: nowrap;
+
+        & > span {
+            position: relative;
+
+            &::after {
+                .underline();
+            }
+        }
 
         &::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -1px;
-            width: 100%;
-            height: 1px;
-            background-color: var(--color-white);
-            opacity: 0;
-            transition: opacity @tr-fast;
+            .underline();
         }
 
         &:hover::after {
             opacity: 1;
+        }
+
+        &:hover > span::after {
+            opacity: 1;
+        }
+    }
+
+    &--gray {
+        color: var(--color-white-dark);
+
+        &::after {
+            background-color: var(--color-white-dark);
+        }
+
+        & > span::after {
+            background-color: var(--color-white-dark);
+        }
+    }
+
+    &--span {
+        &::after {
+            display: none;
         }
     }
 

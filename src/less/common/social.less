@@ -1,0 +1,34 @@
+/**
+ *
+ * Кнопки соц сетей
+ *
+*/
+
+.soc-btn {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    // Модификаторы
+
+    &--styles {
+        & > .soc-btn__item + .soc-btn__item {
+            margin-left: 15px;
+        }
+    }
+
+    // Элементы
+
+    &__item {
+        width: 30px;
+        height: 30px;
+        margin-bottom: 15px;
+
+        &-img {
+            width: inherit;
+            height: inherit;
+            object-fit: contain;
+            object-position: center;
+        }
+    }
+}
