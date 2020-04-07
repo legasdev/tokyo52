@@ -1,0 +1,40 @@
+/**
+ *
+ * Секция меню
+ *
+*/
+
+.group {
+    display: flex;
+    flex-direction: column;
+
+
+    // Модификаторы
+
+    &--styles {
+        width: 100%;
+        margin-top: 146px;
+
+        .adaptive(@screen-620; {
+            margin-top: 80px;
+        });
+    }
+
+    // Элементы
+
+    &__title {
+        align-self: flex-end;
+        margin-bottom: 80px;
+
+        .adaptive(@screen-620; {
+            margin-bottom: 40px;
+        });
+    }
+
+    &__wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        width: 100%;
+    }
+}

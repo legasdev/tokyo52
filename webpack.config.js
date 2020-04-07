@@ -26,8 +26,6 @@ const
             ? `[${firstName}].${typeFile}`
             : `[${firstName}]-[contenthash].${typeFile}`;
 
-
-
 const cssLoaders = (extra) => {
     const loaders = [
         {
@@ -76,6 +74,10 @@ module.exports = {
             './src/less/about/index.less',
             './src/js/about/index.js'
         ],
+        menu: [
+            './src/less/menu/index.less',
+            './src/js/menu/index.js'
+        ],
     },
     output: {
         path: path.resolve(__dirname, 'build/'),
@@ -91,7 +93,7 @@ module.exports = {
         }
     },
     devServer: {
-        port: 8000
+        port: 3000
     },
     optimization: {
         splitChunks: {
@@ -121,6 +123,14 @@ module.exports = {
             filename: 'about.html',
             template: './src/about.html',
             chunks: ['common', 'about'],
+            minify: {
+                collapseWhitespace: isProduction
+            }
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'menu.html',
+            template: './src/menu.html',
+            chunks: ['common', 'menu'],
             minify: {
                 collapseWhitespace: isProduction
             }

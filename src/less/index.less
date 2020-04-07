@@ -36,6 +36,10 @@
     width: 100vw;
     min-height: 100vh;
 
+    &--overflow {
+        overflow: hidden;
+    }
+
     .adaptive(@screen-1440; {
         --screen: calc(@screen-1280 - @screen-padding);
     });
@@ -55,6 +59,8 @@
     max-width: var(--screen);
     margin: 0 auto;
 
+    // Модификаторы
+    
     &--styles {
         padding-top: 328px;
 

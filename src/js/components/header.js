@@ -5,6 +5,7 @@
 */
 
 import {throttle} from '@js/components/throttle';
+import AddListenerToBtn from '@js/components/mobile-menu';
 
 const
     header = document.querySelector('.header'),
@@ -24,5 +25,6 @@ function onScroll(event) {
 }
 
 onScroll();
+AddListenerToBtn(maxY);
 
 window.onscroll = throttle(60, onScroll);

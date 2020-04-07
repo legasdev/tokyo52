@@ -27,6 +27,32 @@
         color: var(--color-white);
         letter-spacing: 0.4px;
         line-height: 22px;
+        cursor: pointer;
+
+        // Модификаторы
+
+        &--no-hover {
+            &::after {
+                display: none;
+            }
+        }
+
+        &--mobile {
+            font-size: 18px;
+            margin-top: 5px;
+        }
+
+        // Элементы
+
+        &-span {
+            position: relative;
+
+            &::after {
+                content: url('~@img/icons/ic_arrow-more.svg');
+                position: absolute;
+                width: 20px;
+            }
+        }
 
         &::after {
             content: '';
@@ -42,9 +68,54 @@
             transition: transform @tr-medium;
         }
 
+        // Эффекты
+
         &:hover::after,
         &--active::after {
             transform: scaleX(1);
+        }
+
+        &:focus > .menu__inner,
+        &:hover > .menu__inner {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    &__inner {
+        position: absolute;
+        left: -20px;
+        top: 100%;
+        min-width: 150px;
+        padding: 5px;
+        z-index: 150;
+        background-color: var(--color-background);
+        border-radius: 2px;
+        opacity: 0;
+        visibility: hidden;
+        transition:
+            opacity @tr-fast,
+            visibility @tr-fast;
+
+        // Модификаторы
+
+        &--mobile {
+            left: -100%;
+        }
+
+        // Элементы
+
+        &-wrapper {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            border-radius: 2px;
+            border: 1px solid var(--color-gray);
+            padding: 10px;
+
+            & > * + * {
+                margin-top: 4px;
+            }
         }
     }
 }

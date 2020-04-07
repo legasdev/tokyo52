@@ -63,6 +63,27 @@
         display: none;
     }
 
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: fixed;
+        left: 0;
+        top: 70px;
+        width: 100vw;
+        height: 100vh;
+        padding: 40px 16px;
+        z-index: 50;
+        background-color: var(--color-background);
+        opacity: 0;
+        visibility: hidden;
+        transition:
+            opacity @tr-fast,
+            visibility @tr-fast;
+    }
+
+    // Эффекты
+
     &__checkbox:checked + &__btn > span {
         &:nth-child(1) {
             transform: rotate(45deg) scaleX(0.85);
@@ -75,6 +96,11 @@
         &:nth-child(3) {
             transform: rotate(-45deg) scaleX(0.85);
         }
+    }
+
+    &__checkbox:checked ~ &__wrapper {
+        opacity: 1;
+        visibility: visible;
     }
 }
 
