@@ -1,5 +1,6 @@
 const
     path = require("path"),
+    paths = require('./paths'),
     BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin,
     { CleanWebpackPlugin } = require('clean-webpack-plugin'),
     MiniCssExtractPlugin = require('mini-css-extract-plugin'),
@@ -60,6 +61,22 @@ const cssLoaders = (extra) => {
     return loaders;
 };
 
+const babelOptions = presets => {
+
+    const opts = {
+        presets: [
+            '@babel/preset-env'
+        ],
+        sourceMap: isDevelopment
+    };
+
+    if (presets) {
+        opts.presets.push(presets);
+    }
+
+    return opts;
+};
+
 module.exports = {
     context: __dirname,
     mode,
@@ -78,6 +95,11 @@ module.exports = {
             './src/less/menu/index.less',
             './src/js/menu/index.js'
         ],
+        app: [
+            './src/less/app/index.less',
+            '@babel/polyfill',
+            './src/js/app/index.jsx'
+        ]
     },
     output: {
         path: path.resolve(__dirname, 'build/'),
@@ -86,6 +108,8 @@ module.exports = {
         chunkFilename: nameFiles('name', 'js')
     },
     resolve: {
+        extensions: paths.moduleFileExtensions
+            .map(ext => `.${ext}`),
         alias: {
             '@js': path.resolve(__dirname, './src/js/'),
             '@less': path.resolve(__dirname, './src/less/'),
@@ -135,6 +159,14 @@ module.exports = {
                 collapseWhitespace: isProduction
             }
         }),
+        new HtmlWebpackPlugin({
+            filename: 'admin.html',
+            template: './src/admin.html',
+            chunks: ['app'],
+            minify: {
+                collapseWhitespace: isProduction
+            }
+        }),
         new CopyWebpackPlugin([
             {
                 from: path.resolve(__dirname, 'src/img'),
@@ -143,7 +175,7 @@ module.exports = {
         ]),
         // new BundleAnalyzerPlugin([]), // Показывать ли статистику по пакетам
         new CleanWebpackPlugin({
-            cleanAfterEveryBuildPatterns: ['!*.woff', '!*.woff2', '!*.ttf', '!*.eot', '!*.otf', '!*.svg', '!*.png']
+            cleanAfterEveryBuildPatterns: ['!*.woff', '!*.woff2', '!*.ttf', '!*.eot', '!*.otf', '!*.svg', '!*.png', '!*.jpg']
         }),
         new MiniCssExtractPlugin({
             filename: nameFiles('name', 'css'),
@@ -158,12 +190,15 @@ module.exports = {
                 exclude: /node_modules/,
                 loader: {
                     loader: 'babel-loader',
-                    options: {
-                        presets: [
-                            '@babel/preset-env'
-                        ],
-                        sourceMap: isDevelopment
-                    }
+                    options: babelOptions()
+                }
+            },
+            {
+                test: /\.jsx$/,
+                exclude: /node_modules/,
+                loader: {
+                    loader: 'babel-loader',
+                    options: babelOptions('@babel/preset-react')
                 }
             },
             {
