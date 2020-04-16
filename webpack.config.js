@@ -12,7 +12,9 @@ const
 // style files regexes
 const
     cssRegex = /\.css$/,
-    lessRegex = /\.less$/;
+    cssRegexModule = /\.module\.css$/,
+    lessRegex = /\.less$/,
+    lessRegexModule = /\.module\.less$/;
 
 const
     isDevelopment = process.env.NODE_ENV === 'development',
@@ -25,7 +27,7 @@ const
     nameFiles = (firstName, typeFile) =>
         isDevelopment
             ? `[${firstName}].${typeFile}`
-            : `[${firstName}]-[contenthash].${typeFile}`;
+            : `[${firstName}].[contenthash].${typeFile}`;
 
 const cssLoaders = (extra) => {
     const loaders = [
@@ -102,8 +104,8 @@ module.exports = {
         ]
     },
     output: {
-        path: path.resolve(__dirname, 'build/'),
-        publicPath: '/',
+        path: path.resolve(__dirname, '../sushi_backend/src/main/resources/static/build/'),
+        publicPath: '/build/',
         filename: nameFiles('name', 'js'),
         chunkFilename: nameFiles('name', 'js')
     },
@@ -114,10 +116,16 @@ module.exports = {
             '@js': path.resolve(__dirname, './src/js/'),
             '@less': path.resolve(__dirname, './src/less/'),
             '@img': path.resolve(__dirname, `./src/img/`),
+            '@src': path.resolve(__dirname, `./src/`),
         }
     },
     devServer: {
-        port: 3000
+        port: 3000,
+        publicPath: '/',
+        hot: true,
+        historyApiFallback: {
+            disableDotRule: true
+        }
     },
     optimization: {
         splitChunks: {
@@ -170,7 +178,7 @@ module.exports = {
         new CopyWebpackPlugin([
             {
                 from: path.resolve(__dirname, 'src/img'),
-                to: path.resolve(__dirname, 'build/img')
+                to: path.resolve(__dirname, '../sushi_backend/src/main/resources/static/img')
             }
         ]),
         // new BundleAnalyzerPlugin([]), // Показывать ли статистику по пакетам
@@ -216,10 +224,23 @@ module.exports = {
 
             },
             {
+                test: lessRegexModule,
+                use: cssLoaders({
+                    loader: 'less-loader',
+                    options: {
+                        sourceMap: isDevelopment,
+                        importLoaders: 1,
+                        modules: true
+                    }
+                }),
+            },
+            {
                 test: /\.(png|jpg|svg|gif)$/,
                 loader: 'file-loader',
                 options: {
                     name: '[name].[contenthash].[ext]',
+                    outputPath: 'img',
+                    publicPath: '../img',
                 },
             },
             {
@@ -227,6 +248,7 @@ module.exports = {
                 loader: 'file-loader',
                 options: {
                     name: '[name].[contenthash].[ext]',
+                    outputPath: 'fonts',
                 },
             },
         ],

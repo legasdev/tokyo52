@@ -3,21 +3,20 @@ import {NavLink, Route, Switch, withRouter} from "react-router-dom";
 import { LastLocationProvider } from 'react-router-last-location';
 
 import LoginPage from "@js/app/components/Login";
+import Home from "@js/app/components/Home";
 
 const App = props => {
 
     return (
-        <div>
-            <NavLink
-                exact to={'/admin/login'}>
-                <span>Профиль</span>
-            </NavLink>
+        <div className={'content'}>
             <LastLocationProvider watchOnlyPathname>
                 <Switch>
                     <Route
-                        exact
                         path={'/admin/login'}
                         render={ () => <LoginPage /> }
+                    />
+                    <Route
+                        render={ () => <Home /> }
                     />
                 </Switch>
             </LastLocationProvider>

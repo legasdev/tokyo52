@@ -1,0 +1,79 @@
+/**
+ *
+ * Поле ввода
+ *
+*/
+
+.input {
+  position: relative;
+  display: flex;
+
+  // Модификаторы
+
+  &--styles {
+    width: 100%;
+    max-width: 270px;
+    height: 33px;
+  }
+
+  // Элементы
+
+  &__text,
+  &__password,
+  &__email {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    background: transparent;
+    padding: 0 5px;
+    border: none;
+    border-bottom: 1px solid var(--color-white-dark);
+    outline: none;
+    color: var(--color-white);
+    font-size: 18px;
+    font-weight: 300;
+  }
+
+  &__label {
+    position: absolute;
+    left: 5px;
+    bottom: 8px;
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--color-gray-light);
+    cursor: text;
+    transition:
+      transform @tr-fast,
+      font-size @tr-fast;
+  }
+
+  &__border {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-red);
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform @tr-fast;
+  }
+
+  // Эффекты
+
+  &__text:focus + &__label,
+  &__password:focus + &__label,
+  &__email:focus + &__label,
+  &__text:not(:placeholder-shown) + &__label,
+  &__password:not(:placeholder-shown) + &__label,
+  &__email:not(:placeholder-shown) + &__label {
+    transform: translate(0, -20px);
+    font-size: 12px;
+  }
+
+  &__text:focus ~ &__border,
+  &__password:focus ~ &__border,
+  &__email:focus ~ &__border {
+    transform: scaleX(1);
+  }
+}
