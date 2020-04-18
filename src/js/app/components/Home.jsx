@@ -1,9 +1,27 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Redirect } from "react-router-dom";
+import {connect, useSelector} from "react-redux";
+import {useLastLocation} from "react-router-last-location";
 
-const Home = props => {
+import {getAuth} from "@js/app/redux/auth-reducer";
 
-    return <Redirect to={'/admin/login'} />;
+const Home = ({getAuth}) => {
+
+    const isAuth = useSelector(state => state.auth.auth);
+    const isInitialized = useSelector(state => state.auth.initialized);
+    const lastPage = useLastLocation();
+
+    useEffect(() => {
+        getAuth();
+    });
+
+    return (
+        isInitialized ?
+            isAuth ?
+                <Redirect to={lastPage ? lastPage.pathname : '/admin/creator'} /> :
+                <Redirect to={'/admin/login'} />
+                : <p>Загрузка...</p>
+    );
 };
 
-export default Home;
+export default connect(null, {getAuth})(Home);

@@ -9,9 +9,26 @@
 @import '~@less/common/input.less';
 @import '~@less/common/card.less';
 
-@import './login-form.less';
+@import './common/index.less';
+@import './Login/index.less';
+@import './Creator/index.less';
+@import './Orders/index.less';
 
 .content {
   width: 100%;
   max-width: var(--screen);
+}
+
+.admin-page {
+  display: flex;
+  flex-direction: column;
+
+  // Модификаторы
+
+  &--styles {
+    width: 100%;
+    padding: 115px 0 80px;
+  }
+
+  // Элементы
 }

@@ -240,7 +240,7 @@ module.exports = {
                 options: {
                     name: '[name].[contenthash].[ext]',
                     outputPath: 'img',
-                    publicPath: '../img',
+                    publicPath: 'img',
                 },
             },
             {

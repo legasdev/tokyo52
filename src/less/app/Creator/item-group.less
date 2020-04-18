@@ -1,0 +1,65 @@
+/**
+ *
+ * Подгруппа меню в админ-панеле
+ *
+*/
+
+.admin-item-group {
+  display: flex;
+  flex-direction: column;
+
+  // Модификаторы
+
+  &--styles {
+    width: 100%;
+    margin: 100px 0 20px;
+  }
+
+  &--align-items-center {
+    align-items: center;
+    flex-direction: row;
+    padding-left: 30px;
+  }
+
+  // Элементы
+
+  &__header {
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+
+    &-btn {
+      margin-left: 40px;
+    }
+  }
+
+  &__input {
+    min-width: 420px;
+    font-family: var(--font);
+    font-size: 32px;
+    color: var(--color-white);
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    background: transparent;
+    border: none;
+
+    &::placeholder {
+      color: var(--color-gray-light);
+      font-weight: 700;
+      letter-spacing: 0.8px;
+    }
+
+    &-btn {
+      max-width: 162px;
+      margin-left: 40px;
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 40px;
+  }
+}

@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import PropTypes from 'prop-types';
 
-const Input = ({ name='field', type='text', className='', id=(Math.random()*new Date()), label='' }) => {
+const Input = ({ name='field', type='text', className='', id=(Math.random()*new Date()), label='', onChange: onChangeInput }) => {
 
     const [value, setValue] = useState('');
 
     function onChange(event) {
         setValue(event.target.value);
+        onChangeInput(event.target.name, event.target.value);
     }
 
     return (
