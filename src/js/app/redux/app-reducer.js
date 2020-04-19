@@ -3,6 +3,7 @@
  * Редьюсер приложения
  *
 */
+import {appAPI} from "@js/app/api/api";
 
 const
     actionTypes = new Map([
@@ -32,3 +33,12 @@ export default appReducer;
 
 
 // Thunks
+export const addNewSubgroup = (nameGroup, name) => async dispatch => {
+    // TODO: Заменить на номральынй запрос с await
+    const res = appAPI.addNewSubgroup(nameGroup, name);
+};
+
+export const deleteSubgroup = (nameGroup, name) => async dispatch => {
+    // TODO: Заменить на номральынй запрос с await
+    const res = appAPI.deleteSubgroup(nameGroup, name);
+};

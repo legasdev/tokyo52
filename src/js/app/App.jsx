@@ -27,7 +27,7 @@ const App = props => {
                         render={ () => <Home /> }
                     />
                     <Route
-                        path={'/admin/creator'}
+                        path={'/admin/creator/:nameMenu?'}
                         render={ () => <CreatorPage /> }
                     />
                     <Route

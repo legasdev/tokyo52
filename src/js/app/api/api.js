@@ -28,13 +28,24 @@ export const authAPI = {
 
 };
 
+// API работы в приложении
 export const appAPI = {
 
     // Добавление группы
-    async addNewGroup(name) {
-        return await Instance.post('/v1/add-group', {name}, {
-            headers: addToken()
-        });
+    async addNewSubgroup(nameGroup, name) {
+        // TODO: Исправить
+        return {data: {ok: true}}
+        // return await Instance.post('/v1/add-group', {name}, {
+        //     headers: addToken()
+        // });
+    },
+
+    async deleteSubgroup(nameGroup, name) {
+        // TODO: Исправить
+        return {data: {ok: true}}
+        // return await Instance.post('/v1/add-group', {name}, {
+        //     headers: addToken()
+        // });
     },
 
 };

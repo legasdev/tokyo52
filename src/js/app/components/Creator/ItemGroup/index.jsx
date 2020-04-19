@@ -1,12 +1,21 @@
 import React, {useState} from "react";
+import {connect} from "react-redux";
+
+import {deleteSubgroup} from "@js/app/redux/app-reducer";
+
 import ItemCard from "@js/app/components/Creator/ItemCard";
 
-const ItemGroup = ({ title='' }) => {
+const ItemGroup = ({ title='', nameGroup, deleteSubgroup }) => {
 
     const [inputValue, setInputValue] = useState(title);
 
     function onChange(event) {
         setInputValue(event.target.value);
+    }
+
+    // Удалить подгруппу
+    function onClickDeleteSubgroup() {
+        deleteSubgroup(nameGroup, title);
     }
 
     return (
@@ -18,7 +27,10 @@ const ItemGroup = ({ title='' }) => {
                     value={inputValue}
                     onChange={onChange}
                 />
-                <button className='btn btn--styles btn--stroke btn--min admin-item-group__header-btn'>Удалить группу</button>
+                <button
+                    className='btn btn--styles btn--stroke btn--min admin-item-group__header-btn'
+                    onClick={onClickDeleteSubgroup}
+                >Удалить группу</button>
             </div>
             <div className='admin-item-group__wrapper'>
                 <ItemCard/>
@@ -34,4 +46,4 @@ const ItemGroup = ({ title='' }) => {
     );
 };
 
-export default ItemGroup;
+export default connect(null, ({deleteSubgroup}))(ItemGroup);

@@ -4,7 +4,7 @@ import {NavLink} from "react-router-dom";
 const NavigateCategory = props => {
 
     return (
-        <div className='admin-nav admin-nav--styles'>
+        <div className='admin-nav admin-nav--styles admin-nav--min'>
             <NavLink
                 exact to={'/admin/creator/rolls'}
                 className={'admin-nav__item'}

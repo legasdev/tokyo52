@@ -1,11 +1,27 @@
 import React, {useState} from "react";
+import {connect} from "react-redux";
 
-const NewItemGroup = props => {
+import {addNewSubgroup} from '@js/app/redux/app-reducer';
 
-    const [nameGroup, setNameGroup] = useState('');
+/**
+ * Добавление новой подгруппы
+ *
+ * @param nameGroup
+ * @param addNewGroup
+ * @returns {*}
+ * @constructor
+ */
+const NewItemGroup = ({ nameGroup, addNewSubgroup }) => {
+
+    const [newNameGroup, setNewNameGroup] = useState('');
 
     function onChange(event) {
-        setNameGroup(event.target.value);
+        setNewNameGroup(event.target.value);
+    }
+
+    // Отправить запрос на добавление группы
+    function onClick() {
+        addNewSubgroup(nameGroup, newNameGroup);
     }
 
     return (
@@ -14,11 +30,14 @@ const NewItemGroup = props => {
                 className={'admin-item-group__input'}
                 placeholder={'Название группы...'}
                 onChange={onChange}
-                value={nameGroup}
+                value={newNameGroup}
             />
-            <button className='btn btn--styles btn--stroke btn--min admin-item-group__input-btn'>Добавить группу</button>
+            <button 
+                className='btn btn--styles btn--stroke btn--min admin-item-group__input-btn'
+                onClick={onClick}
+            >Добавить группу</button>
         </div>
     );
 };
 
-export default NewItemGroup;
+export default connect(null, {addNewSubgroup})(NewItemGroup);

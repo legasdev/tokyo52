@@ -18,7 +18,7 @@ const Home = ({getAuth}) => {
     return (
         isInitialized ?
             isAuth ?
-                <Redirect to={lastPage ? lastPage.pathname : '/admin/creator'} /> :
+                <Redirect to={lastPage ? lastPage.pathname : '/admin/creator/rolls'} /> :
                 <Redirect to={'/admin/login'} />
                 : <p>Загрузка...</p>
     );
