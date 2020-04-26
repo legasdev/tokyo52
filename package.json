@@ -30,6 +30,7 @@
     "react-router-last-location": "^2.0.1",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
+    "reselect": "^4.0.0",
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {

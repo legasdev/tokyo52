@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Route, Switch, withRouter} from "react-router-dom";
 import { LastLocationProvider } from 'react-router-last-location';
 import {useSelector} from "react-redux";
@@ -9,7 +9,7 @@ import CreatorPage from "@js/app/components/Creator";
 import OrdersPage from "@js/app/components/Orders";
 import NavigatePages from "@js/app/components/common/NavigatePages";
 
-const App = props => {
+const App = (props) => {
 
     const isAuth = useSelector(state => state.auth.auth);
 

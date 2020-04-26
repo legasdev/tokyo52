@@ -12,8 +12,8 @@ const Home = ({getAuth}) => {
     const lastPage = useLastLocation();
 
     useEffect(() => {
-        getAuth();
-    });
+        getAuth(isInitialized);
+    }, [isInitialized]);
 
     return (
         isInitialized ?
