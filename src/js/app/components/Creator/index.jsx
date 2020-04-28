@@ -25,6 +25,18 @@ const selectGroupsInCategory = createSelector(
     }
 );
 
+// Получает локальные группы в категории
+const selectGroupsInCategoryLocal = createSelector(
+    state => state.app.localCategories,
+    state => state.app.currentNamePage,
+    (localCategories, currentNamePage) => {
+        const
+            category = localCategories && localCategories[currentNamePage],
+            groups = category && category.groups && Object.values(category.groups);
+        return groups && groups.sort((groupFirst, groupNext) => groupFirst.id - groupNext.id);
+    }
+);
+
 const CreatorPage = ({ match, getAllGroups, setCurrentPage }) => {
 
     const isRedirect = useRedirectToHome();
@@ -35,7 +47,8 @@ const CreatorPage = ({ match, getAllGroups, setCurrentPage }) => {
         [isLoadedAllGroups, setIsLoadedAllGroups] = useState(false);
 
     const
-        groups = useSelector(selectGroupsInCategory);
+        groups = useSelector(selectGroupsInCategory),
+        groupsLocal = useSelector(selectGroupsInCategoryLocal);
 
     // Сменить Title
     useEffect(() => {
@@ -67,13 +80,14 @@ const CreatorPage = ({ match, getAllGroups, setCurrentPage }) => {
                     <NavigateCategory />
                     {
                         groups &&
-                        groups.map(group =>
+                        groups.map( (group, i) =>
                             <ItemGroup
                                 key={group.id}
                                 id={group.id}
                                 title={group.name}
                                 idCategory={idCategory}
                                 items={group.goods}
+                                localItems={groupsLocal && groupsLocal[i] && groupsLocal[i].goods}
                             />)
                     }
                     <NewItemGroup

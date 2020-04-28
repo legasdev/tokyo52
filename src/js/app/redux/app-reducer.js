@@ -12,17 +12,24 @@ import {makeObjectFromArray} from "@js/app/common/makeObjectFromArray";
 const
     actionTypes = new Map([
         ['addAllCategory', 'app/addAllCategory'],
+        ['addAllCategoryLocal', 'app/addAllCategoryLocal'],
         ['addGroupsToCategory', 'app/addGroupsToCategory'],
+        ['addGroupsToCategoryLocal', 'app/addGroupsToCategoryLocal'],
         ['setIsLoaded', 'app/setIsLoaded'],
         ['setCurrentNamePage', 'app/setCurrentNamePage'],
         ['changeCategory', 'app/changeCategory'],
-        ['addNewItem', 'app/addNewItem']
+        ['changeCategoryLocal', 'app/changeCategoryLocal'],
+        ['addNewItem', 'app/addNewItem'],
+        ['updateGroup', 'app/updateGroup'],
+        ['updateGroupLocal', 'app/updateGroupLocal'],
+        ['renameGroup', 'app/renameGroup']
     ]);
 
 const initialState = {
     currentNamePage: 'rolls',
     categories: null,
     isLoaded: false,
+    localCategories: null,
 };
 
 
@@ -38,10 +45,15 @@ const appReducer = (state=initialState, action) => {
                 categories: action.categories
             };
 
+        case actionTypes.get('addAllCategoryLocal'):
+            return {
+                ...state,
+                localCategories: action.categories
+            };
+
         case actionTypes.get('addGroupsToCategory'): {
             const
-                category = state.categories[namesCategoryById.get(action.idCategory)],
-                groups = category.groups || {};
+                category = state.categories[namesCategoryById.get(action.idCategory)];
             return {
                 ...state,
                 categories: {
@@ -51,6 +63,29 @@ const appReducer = (state=initialState, action) => {
                         groups: {
                             ...action.groups
                         }
+                    }
+                }
+            };
+        }
+
+        case actionTypes.get('addGroupsToCategoryLocal'): {
+            const
+                category = state.localCategories[namesCategoryById.get(action.idCategory)];
+            return {
+                ...state,
+                localCategories: {
+                    ...state.localCategories,
+                    [namesCategoryById.get(action.idCategory)]: {
+                        ...category,
+                        groups: Object.keys(action.groups).reduce((acc, key) => {
+                            return {
+                                ...acc,
+                                [key]: {
+                                    ...action.groups[key],
+                                    goods: []
+                                }
+                            }
+                        }, {})
                     }
                 }
             };
@@ -79,11 +114,47 @@ const appReducer = (state=initialState, action) => {
                 }
             };
 
+        case actionTypes.get('changeCategoryLocal'):
+            return {
+                ...state,
+                localCategories: {
+                    ...state.localCategories,
+                    [namesCategoryById.get(action.newCategory.id)]: {
+                        ...action.newCategory
+                    }
+                }
+            };
+
         case actionTypes.get('addNewItem'): {
             const
-                category = state.categories[namesCategoryById.get(action.idCategory)],
-                _groups = category.groups || {},
+                localCategory = state.localCategories[namesCategoryById.get(action.idCategory)],
+                _groups = localCategory.groups || {},
                 goods = _groups[action.idGroup] && _groups[action.idGroup].goods || [];
+            return {
+                ...state,
+                localCategories: {
+                    ...state.localCategories,
+                    [namesCategoryById.get(action.idCategory)]: {
+                        ...localCategory,
+                        groups: {
+                            ..._groups,
+                            [action.idGroup]: {
+                                ..._groups[action.idGroup],
+                                goods: [
+                                    ...goods,
+                                    item(action.groupId, `new-${Math.floor(Math.random() * new Date())}`)
+                                ]
+                            }
+                        }
+                    }
+                }
+            };
+        }
+
+        case actionTypes.get('updateGroup'): {
+            const
+                category = state.categories[namesCategoryById.get(action.idCategory)],
+                groups = category.groups || {};
             return {
                 ...state,
                 categories: {
@@ -91,13 +162,52 @@ const appReducer = (state=initialState, action) => {
                     [namesCategoryById.get(action.idCategory)]: {
                         ...category,
                         groups: {
-                            ..._groups,
+                            ...groups,
                             [action.idGroup]: {
-                                ..._groups[action.idGroup],
-                                goods: [
-                                    ...goods,
-                                    item(action.groupId)
-                                ]
+                                ...action.group
+                            }
+                        }
+                    }
+                }
+            };
+        }
+
+        case actionTypes.get('updateGroupLocal'):
+            const
+                category = state.localCategories[namesCategoryById.get(action.idCategory)],
+                groups = category.groups || {};
+            return {
+                ...state,
+                localCategories: {
+                    ...state.localCategories,
+                    [namesCategoryById.get(action.idCategory)]: {
+                        ...category,
+                        groups: {
+                            ...groups,
+                            [action.idGroup]: {
+                                ...groups[action.idGroup],
+                                goods: groups[action.idGroup].goods.filter(item => item.id !== action.idItem)
+                            }
+                        }
+                    }
+                }
+            };
+
+        case actionTypes.get('renameGroup'): {
+            const
+                category = state.categories[namesCategoryById.get(action.idCategory)],
+                groups = category.groups || {};
+            return {
+                ...state,
+                categories: {
+                    ...state.categories,
+                    [namesCategoryById.get(action.idCategory)]: {
+                        ...category,
+                        groups: {
+                            ...groups,
+                            [action.idGroup]: {
+                                ...groups[action.idGroup],
+                                name: action.newName
                             }
                         }
                     }
@@ -117,10 +227,16 @@ export default appReducer;
 // Actions
 const _setIsLoaded = () => ({type: actionTypes.get('setIsLoaded')});
 const _addAllCategory = categories => ({type: actionTypes.get('addAllCategory'), categories});
+const _addAllCategoryLocal = categories => ({type: actionTypes.get('addAllCategoryLocal'), categories});
 const _addGroupsToCategory = (idCategory, groups) => ({type: actionTypes.get('addGroupsToCategory'), idCategory, groups});
+const _addGroupsToCategoryLocal = (idCategory, groups) => ({type: actionTypes.get('addGroupsToCategoryLocal'), idCategory, groups});
 const _setCurrentPage = namePage => ({type: actionTypes.get('setCurrentNamePage'), namePage});
 const _changeCategory = newCategory => ({type: actionTypes.get('changeCategory'), newCategory});
+const _changeCategoryLocal = newCategory => ({type: actionTypes.get('changeCategoryLocal'), newCategory});
 const _addNewItem = (idCategory, idGroup) => ({type: actionTypes.get('addNewItem'), idCategory, idGroup});
+const _updateGroup = (idCategory, idGroup, group) => ({type: actionTypes.get('updateGroup'), idCategory, idGroup, group});
+const _updateGroupLocal = (idCategory, idGroup, idItem) => ({type: actionTypes.get('updateGroupLocal'), idCategory, idGroup, idItem});
+const _renameGroup = (idCategory, idGroup, newName) => ({type: actionTypes.get('renameGroup'), idCategory, idGroup, newName});
 
 // Thunks
 
@@ -155,11 +271,18 @@ export const getAllGroups = () => async dispatch => {
                 }), {});
 
             await dispatch(_addAllCategory(_categories));
+            dispatch(_addAllCategoryLocal(_categories));
 
             for (let category of categories) {
+                const
+                    objectGroup = makeObjectFromArray(category.groups);
                 dispatch(_addGroupsToCategory(
                     category.id,
-                    makeObjectFromArray(category.groups)
+                    objectGroup
+                ));
+                dispatch(_addGroupsToCategoryLocal(
+                    category.id,
+                    objectGroup
                 ));
             }
             dispatch(_setIsLoaded());
@@ -169,6 +292,29 @@ export const getAllGroups = () => async dispatch => {
     } catch(error) {
         console.group('========[ Ошибка загрузки данных ]========');
         console.info('Загрузка всех данных');
+        console.error(error);
+        console.groupEnd();
+    }
+};
+
+/**
+ * Получить определенную группу
+ *
+ * @param idCategory
+ * @param idGroup
+ * @returns {Function}
+ */
+export const getGroup = (idCategory, idGroup) => async dispatch => {
+    try {
+        const {data} = await appAPI.getGroup(idGroup);
+        if (data.ok) {
+           console.log(data);
+        } else {
+            throw new Error('Ошибка в результате (ok = false)');
+        }
+    } catch(error) {
+        console.group('========[ Ошибка загрузки данных ]========');
+        console.info('Загрузка группы');
         console.error(error);
         console.groupEnd();
     }
@@ -191,8 +337,13 @@ export const addNewGroup = (idCategory, name) => async dispatch => {
                     newCategory = {
                         ...data.category,
                         groups: makeObjectFromArray(data.category.groups)
+                    },
+                    newCategoryLocal = {
+                        ...data.category,
+                        groups: makeObjectFromArray(data.category.groups, true)
                     };
                 dispatch(_changeCategory(newCategory));
+                dispatch(_changeCategoryLocal(newCategoryLocal));
             } else {
                 throw new Error('Ошибка обновления группы');
             }
@@ -207,13 +358,36 @@ export const addNewGroup = (idCategory, name) => async dispatch => {
 };
 
 /**
+ * Переименовать группу
+ *
+ * @param idCategory - ID Категории
+ * @param idGroup - ID Группы
+ * @param newName - Новое имя группы
+ * @returns {Function}
+ */
+export const renameGroup = (idCategory, idGroup, newName) => async dispatch => {
+    try {
+        const {data: {ok}} = await appAPI.renameGroup(idGroup, newName);
+        if (ok) {
+            dispatch(_renameGroup(idCategory, idGroup, newName));
+        } else {
+            throw new Error('Ошибка при ренейме на сервере')
+        }
+    } catch(error) {
+        console.group('========[ Ошибка переименования группы ]========');
+        console.error(error);
+        console.groupEnd();
+    }
+};
+
+/**
  * Удалить группу в категории
  *
  * @param idGroup - ID Группы
  * @param idCategory - ID Категории
  * @returns {Function}
  */
-export const deleteGroup = (idGroup, idCategory) => async dispatch => {
+export const deleteGroup = (idCategory, idGroup) => async dispatch => {
     try {
         const {data} = await appAPI.deleteGroup(idGroup);
         if (data.ok) {
@@ -223,8 +397,13 @@ export const deleteGroup = (idGroup, idCategory) => async dispatch => {
                     newCategory = {
                         ...data.category,
                         groups: makeObjectFromArray(data.category.groups)
+                    },
+                    newCategoryLocal = {
+                        ...data.category,
+                        groups: makeObjectFromArray(data.category.groups, true)
                     };
                 dispatch(_changeCategory(newCategory));
+                dispatch(_changeCategoryLocal(newCategoryLocal));
             } else {
                 throw new Error('Ошибка обновления группы');
             }
@@ -257,14 +436,21 @@ export const addNewItem = (idCategory, idGroup) => dispatch => {
  * @param item - Объект продукта
  * @param imageFile - Файл картинки
  * @param isNew - Новый ли файл
+ * @param idCategory - ID Категории
  * @returns {Function}
  */
-export const saveItem = (item, imageFile, isNew) => async dispatch => {
+export const saveItem = (item, imageFile, isNew, idCategory) => async dispatch => {
     try {
         const {data} = await appAPI.saveItem(item, imageFile, isNew);
         if (data.ok) {
-            // const {data} = await appAPI.getGroups(idCategory);
-            console.log('SAVE ITEM')
+            if (isNew) {
+                const {data} = await appAPI.getGroup(item.groupId);
+                if (data.ok) {
+                    dispatch(_updateGroup(idCategory, item.groupId, data.group))
+                } else {
+                    throw new Error('Ошибка обновления группы');
+                }
+            }
         } else {
             throw new Error('Пришел не тот ответ');
         }
@@ -275,14 +461,31 @@ export const saveItem = (item, imageFile, isNew) => async dispatch => {
     }
 };
 
-export const deleteItem = idItem => async dispatch => {
+/**
+ * Удалить продукт
+ *
+ * @param idCategory
+ * @param idGroup
+ * @param idItem
+ * @param isNew
+ * @returns {Function}
+ */
+export const deleteItem = (idCategory, idGroup, idItem, isNew) => async dispatch => {
     try {
-        const {data} = await appAPI.deleteItem(idItem);
-        if (data.ok) {
-            // const {data} = await appAPI.getGroups(idCategory);
-            console.log('DELETE ITEM')
+        if (isNew) {
+            dispatch(_updateGroupLocal(idCategory, idGroup, idItem));
         } else {
-            throw new Error('Пришел не тот ответ');
+            const {data} = await appAPI.deleteItem(idItem);
+            if (data.ok) {
+                const {data} = await appAPI.getGroup(idGroup);
+                if (data.ok) {
+                    dispatch(_updateGroup(idCategory, idGroup, data.group));
+                } else {
+                    throw new Error('Ошибка обновления группы');
+                }
+            } else {
+                throw new Error('Пришел не тот ответ');
+            }
         }
     } catch(error) {
         console.group('========[ Ошибка удаления товара ]========');

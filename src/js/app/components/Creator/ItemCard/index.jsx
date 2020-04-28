@@ -10,7 +10,8 @@ import {saveItem, deleteItem} from "@js/app/redux/app-reducer";
  * @returns {*}
  * @constructor
  */
-const ItemCard = ({idGroup, idItem, img='', name='',
+const ItemCard = ({idCategory, idGroup, idItem,
+                      img='', name='',
                       structure='',
                       options=[], labels={},
                       weight='', price='',
@@ -45,10 +46,11 @@ const ItemCard = ({idGroup, idItem, img='', name='',
     /** Сохранить **/
     const
         onClickSave = useCallback(() => {
+            const isNew = !!idItem.toString().match(/new/);
             setIsNeedSave(false);
             saveItem(createItem(
                 idGroup,
-                idItem,
+                isNew ? 0 : idItem,
                 '',
                 nameItem,
                 structureItem,
@@ -60,9 +62,9 @@ const ItemCard = ({idGroup, idItem, img='', name='',
                 },
                 [
                     {
-                        name: "scorched",
-                        price: scorchedPrice,
-                        weight: scorchedWeight
+                        name: "big",
+                        price: bigPrice,
+                        weight: bigWeight
                     },
                     {
                         name: "hot",
@@ -70,24 +72,23 @@ const ItemCard = ({idGroup, idItem, img='', name='',
                         weight: hotWeight
                     },
                     {
-                        name: "big",
-                        price: bigPrice,
-                        weight: bigWeight
-                    },
-                ]
+                        name: "scorched",
+                        price: scorchedPrice,
+                        weight: scorchedWeight
+                    },]
                 ),
-                imageFile,
-                idItem === 0
+                imageFile, isNew, idCategory
             );
-        });
+            deleteItem(idCategory, idGroup, idItem, isNew);
+        }, [idCategory, idGroup, idItem, nameItem, structureItem,
+            weightClassic, priceClassic, bigPrice, bigWeight, hotPrice, hotWeight,
+            scorchedPrice, scorchedWeight, imageFile]);
 
     /** Удалить **/
     const
         onClickDelete = useCallback(() => {
-            if (idItem !== 0) {
-                deleteItem(idItem);
-            }
-        });
+            deleteItem(idCategory, idGroup, idItem, !!idItem.toString().match(/new/),);
+        }, [idCategory, idGroup, idItem]);
 
     /** Замена на Input **/
     const

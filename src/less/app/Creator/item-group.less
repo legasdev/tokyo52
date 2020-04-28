@@ -27,16 +27,18 @@
     position: relative;
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     padding-left: 30px;
 
-    &-btn {
-      margin-left: 40px;
+    &-btn--margin-right {
+      margin-right: 20px;
     }
   }
 
   &__input {
     position: relative;
     min-width: 420px;
+    margin: 0 40px 0 0;
     font-family: var(--font);
     font-size: 32px;
     color: var(--color-white);
@@ -54,7 +56,15 @@
     &-btn {
       max-width: 162px;
       margin-left: 40px;
+
+      &--margin-right {
+        margin-right: 20px;
+      }
     }
+
+    .adaptive(@screen-1280; {
+      margin: 0 40px 20px 0;
+    });
   }
 
   &__id-group {

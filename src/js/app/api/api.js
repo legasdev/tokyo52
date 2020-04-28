@@ -59,6 +59,19 @@ export const appAPI = {
     },
 
     /**
+     * Переименовать группу
+     *
+     * @param id - ID Группы
+     * @param name - Новое имя
+     * @returns {Promise<AxiosResponse<T>>}
+     */
+    async renameGroup(id, name) {
+        return Instance.post('/v1/group/update', {id, name}, {
+            headers: addToken()
+        });
+    },
+
+    /**
      * Удаление группы
      *
      * @param id - ID группы
@@ -92,6 +105,19 @@ export const appAPI = {
         return await Instance.post('/v1/category', {id}, {
             headers: addToken()
         });
+    },
+
+    /**
+     * Получить определенную группу
+     * по ID
+     *
+     * @param id
+     * @returns {Promise<AxiosResponse<T>>}
+     */
+    async getGroup(id) {
+      return await Instance.post('/v1/group', {id}, {
+          headers: addToken(),
+      });
     },
 
     /**
