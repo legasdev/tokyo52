@@ -46,25 +46,20 @@ const ItemCard = ({idCategory, idGroup, idItem,
     /** Сохранить **/
     const
         onClickSave = useCallback(() => {
-            const isNew = !!idItem.toString().match(/new/);
+            const
+                isNew = !!idItem.toString().match(/new/);
             setIsNeedSave(false);
-            saveItem(createItem(
-                idGroup,
-                isNew ? 0 : idItem,
-                '',
-                nameItem,
-                structureItem,
-                weightClassic,
-                priceClassic,
+            saveItem(createItem(idGroup,isNew ? 0 : idItem,'',
+                nameItem, structureItem, weightClassic, priceClassic,
                 {
                     hit: false,
                     new: false
                 },
                 [
                     {
-                        name: "big",
-                        price: bigPrice,
-                        weight: bigWeight
+                        name: "scorched",
+                        price: scorchedPrice,
+                        weight: scorchedWeight
                     },
                     {
                         name: "hot",
@@ -72,14 +67,16 @@ const ItemCard = ({idCategory, idGroup, idItem,
                         weight: hotWeight
                     },
                     {
-                        name: "scorched",
-                        price: scorchedPrice,
-                        weight: scorchedWeight
+                        name: "big",
+                        price: bigPrice,
+                        weight: bigWeight
                     },]
                 ),
                 imageFile, isNew, idCategory
             );
-            deleteItem(idCategory, idGroup, idItem, isNew);
+            if (isNew) {
+                deleteItem(idCategory, idGroup, idItem, true);
+            }
         }, [idCategory, idGroup, idItem, nameItem, structureItem,
             weightClassic, priceClassic, bigPrice, bigWeight, hotPrice, hotWeight,
             scorchedPrice, scorchedWeight, imageFile]);

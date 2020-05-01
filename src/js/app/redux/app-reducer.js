@@ -7,6 +7,7 @@ import {appAPI} from "@js/app/api/api";
 import {namesCategoryById} from "@js/app/common/categoriesName";
 import {item} from "@js/app/common/item";
 import {makeObjectFromArray} from "@js/app/common/makeObjectFromArray";
+import sortOptionInItem from "@js/app/common/sortOptionInItem";
 
 
 const
@@ -164,7 +165,8 @@ const appReducer = (state=initialState, action) => {
                         groups: {
                             ...groups,
                             [action.idGroup]: {
-                                ...action.group
+                                ...action.group,
+                                goods: action.group.goods.map(item => sortOptionInItem(item))
                             }
                         }
                     }
