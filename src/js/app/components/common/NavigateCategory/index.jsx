@@ -18,6 +18,12 @@ const NavigateCategory = props => {
                 <span>Сеты</span>
             </NavLink>
             <NavLink
+                exact to={'/admin/creator/pizza'}
+                className={'admin-nav__item'}
+                activeClassName={'admin-nav__item--active'}>
+                <span>Пицца</span>
+            </NavLink>
+            <NavLink
                 exact to={'/admin/creator/rolls_hot'}
                 className={'admin-nav__item'}
                 activeClassName={'admin-nav__item--active'}>

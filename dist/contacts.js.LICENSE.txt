@@ -1,0 +1,41 @@
+/*! ./src/js/contacts/index.js */
+
+/*! ./src/less/contacts/index.less */
+
+/*! @js/components/header */
+
+/*! @js/components/mobile-menu */
+
+/*! @js/components/throttle */
+
+/*! exports provided: default */
+
+/*! exports provided: throttle */
+
+/*! no exports provided */
+
+/*! no static exports found */
+
+/*!**********************************!*\
+  !*** ./src/js/contacts/index.js ***!
+  \**********************************/
+
+/*!*************************************!*\
+  !*** ./src/js/components/header.js ***!
+  \*************************************/
+
+/*!**************************************!*\
+  !*** ./src/less/contacts/index.less ***!
+  \**************************************/
+
+/*!***************************************!*\
+  !*** ./src/js/components/throttle.js ***!
+  \***************************************/
+
+/*!******************************************!*\
+  !*** ./src/js/components/mobile-menu.js ***!
+  \******************************************/
+
+/*!***********************************************************************!*\
+  !*** multi ./src/less/contacts/index.less ./src/js/contacts/index.js ***!
+  \***********************************************************************/

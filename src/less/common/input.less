@@ -20,7 +20,8 @@
 
   &__text,
   &__password,
-  &__email {
+  &__email,
+  &__textarea {
     position: relative;
     width: 100%;
     margin: 0 auto;
@@ -34,6 +35,10 @@
     font-weight: 300;
   }
 
+  &__textarea {
+    resize: none;
+  }
+
   &__label {
     position: absolute;
     left: 5px;
@@ -45,6 +50,11 @@
     transition:
       transform @tr-fast,
       font-size @tr-fast;
+
+    &--top {
+      bottom: auto;
+      top: 8px;
+    }
   }
 
   &__border {
@@ -64,16 +74,19 @@
   &__text:focus + &__label,
   &__password:focus + &__label,
   &__email:focus + &__label,
+  &__textarea:focus + &__label,
   &__text:not(:placeholder-shown) + &__label,
   &__password:not(:placeholder-shown) + &__label,
-  &__email:not(:placeholder-shown) + &__label {
+  &__email:not(:placeholder-shown) + &__label,
+  &__textarea:not(:placeholder-shown) + &__label {
     transform: translate(0, -20px);
     font-size: 12px;
   }
 
   &__text:focus ~ &__border,
   &__password:focus ~ &__border,
-  &__email:focus ~ &__border {
+  &__email:focus ~ &__border,
+  &__textarea:focus ~ &__border {
     transform: scaleX(1);
   }
 }

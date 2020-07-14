@@ -1,0 +1,35 @@
+.contacts {
+
+  &__wrapper {
+    margin-top: 0;
+  }
+
+  &__title {
+    padding-left: 30px;
+
+    .adaptive(@screen-620; {
+      padding-left: 0;
+    });
+  }
+
+  &__map {
+    margin-top: 146px;
+
+    &-wrapper {
+      margin-top: 40px;
+      height: 340px;
+
+      .adaptive(@screen-1280; {
+        height: 300px;
+      });
+
+      .adaptive(@screen-620; {
+        height: 250px;
+      });
+    }
+
+    .adaptive(@screen-620; {
+      margin-top: 80px;
+    });
+  }
+}

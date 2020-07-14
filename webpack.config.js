@@ -27,7 +27,7 @@ const
     nameFiles = (firstName, typeFile) =>
         isDevelopment
             ? `[${firstName}].${typeFile}`
-            : `[${firstName}].[contenthash].${typeFile}`;
+            : `[${firstName}].[contenthash].${typeFile}`; // .[contenthash]
 
 const cssLoaders = (extra) => {
     const loaders = [
@@ -89,13 +89,21 @@ module.exports = {
             './src/less/home/index.less',
             './src/js/home/index.js'
         ],
-        about: [
-            './src/less/about/index.less',
-            './src/js/about/index.js'
-        ],
         menu: [
             './src/less/menu/index.less',
             './src/js/menu/index.js'
+        ],
+        stocks: [
+            './src/less/stocks/index.less',
+            './src/js/stocks/index.js'
+        ],
+        contacts: [
+            './src/less/contacts/index.less',
+            './src/js/contacts/index.js'
+        ],
+        basket: [
+            './src/less/basket/index.less',
+            './src/js/basket/index.js'
         ],
         app: [
             './src/less/app/index.less',
@@ -103,7 +111,12 @@ module.exports = {
             './src/js/app/index.jsx'
         ]
     },
-    output: {
+    output: isProduction ? {
+        path: path.resolve(__dirname, '../sushi_backend/src/main/resources/static/build/'),
+        publicPath: '/build/',
+        filename: nameFiles('name', 'js'),
+        chunkFilename: nameFiles('name', 'js')
+    } : {
         path: path.resolve(__dirname, '../sushi_backend/src/main/resources/static/build/'),
         publicPath: '/build/',
         filename: nameFiles('name', 'js'),
@@ -148,15 +161,7 @@ module.exports = {
             template: './src/index.html',
             chunks: ['common', 'main'],
             minify: {
-                collapseWhitespace: isProduction
-            }
-        }),
-        new HtmlWebpackPlugin({
-            filename: 'about.html',
-            template: './src/about.html',
-            chunks: ['common', 'about'],
-            minify: {
-                collapseWhitespace: isProduction
+                collapseWhitespace: false
             }
         }),
         new HtmlWebpackPlugin({
@@ -164,7 +169,31 @@ module.exports = {
             template: './src/menu.html',
             chunks: ['common', 'menu'],
             minify: {
-                collapseWhitespace: isProduction
+                collapseWhitespace: false
+            }
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'stocks.html',
+            template: './src/stocks.html',
+            chunks: ['common', 'stocks'],
+            minify: {
+                collapseWhitespace: false
+            }
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'contacts.html',
+            template: './src/contacts.html',
+            chunks: ['common', 'contacts'],
+            minify: {
+                collapseWhitespace: false
+            }
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'basket.html',
+            template: './src/basket.html',
+            chunks: ['common', 'basket'],
+            minify: {
+                collapseWhitespace: false
             }
         }),
         new HtmlWebpackPlugin({
@@ -172,15 +201,15 @@ module.exports = {
             template: './src/admin.html',
             chunks: ['app'],
             minify: {
-                collapseWhitespace: isProduction
+                collapseWhitespace: false
             }
         }),
-        new CopyWebpackPlugin([
+        new CopyWebpackPlugin(isProduction ? [
             {
                 from: path.resolve(__dirname, 'src/img'),
                 to: path.resolve(__dirname, '../sushi_backend/src/main/resources/static/img')
             }
-        ]),
+        ] : []),
         // new BundleAnalyzerPlugin([]), // Показывать ли статистику по пакетам
         new CleanWebpackPlugin({
             cleanAfterEveryBuildPatterns: ['!*.woff', '!*.woff2', '!*.ttf', '!*.eot', '!*.otf', '!*.svg', '!*.png', '!*.jpg']

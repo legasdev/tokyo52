@@ -9,7 +9,8 @@ export const idsCategoryByName = new Map([
     ['fastfood', 7],
     ['beverages', 8],
     ['desert', 9],
-    ['child', 10]
+    ['child', 10],
+    ['pizza', 11]
 ]);
 
 export const namesCategoryById = new Map([
@@ -22,7 +23,8 @@ export const namesCategoryById = new Map([
     [7, 'fastfood'],
     [8, 'beverages'],
     [9, 'desert'],
-    [10, 'child']
+    [10, 'child'],
+    [11, 'pizza']
 ]);
 
 export const nameMenu = new Map([
@@ -36,4 +38,5 @@ export const nameMenu = new Map([
     ['child', 'Детское меню'],
     ['beverages', 'Напитки'],
     ['desert', 'Десерты'],
+    ['pizza', 'Пицца'],
 ]);

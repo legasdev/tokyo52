@@ -1,0 +1,47 @@
+/*! ./src/js/basket/index.js */
+
+/*! ./src/less/basket/index.less */
+
+/*! @js/components/card */
+
+/*! @js/components/header */
+
+/*! @js/components/mobile-menu */
+
+/*! @js/components/throttle */
+
+/*! exports provided: default */
+
+/*! exports provided: throttle */
+
+/*! no exports provided */
+
+/*! no static exports found */
+
+/*!********************************!*\
+  !*** ./src/js/basket/index.js ***!
+  \********************************/
+
+/*!***********************************!*\
+  !*** ./src/js/components/card.js ***!
+  \***********************************/
+
+/*!************************************!*\
+  !*** ./src/less/basket/index.less ***!
+  \************************************/
+
+/*!*************************************!*\
+  !*** ./src/js/components/header.js ***!
+  \*************************************/
+
+/*!***************************************!*\
+  !*** ./src/js/components/throttle.js ***!
+  \***************************************/
+
+/*!******************************************!*\
+  !*** ./src/js/components/mobile-menu.js ***!
+  \******************************************/
+
+/*!*******************************************************************!*\
+  !*** multi ./src/less/basket/index.less ./src/js/basket/index.js ***!
+  \*******************************************************************/

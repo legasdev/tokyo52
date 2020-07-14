@@ -1,0 +1,34 @@
+.stocks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  // Модификаторы
+
+  // Элементы
+
+  &__wrapper {
+    .adaptive(@screen-620; {
+      padding: 0;
+    })
+  }
+
+  &__title {
+    align-self: flex-start;
+
+    .adaptive(@screen-620; {
+      padding-left: 0;
+    });
+  }
+
+  &__img {
+    width: 100%;
+    object-fit: contain;
+    object-position: center;
+    margin-bottom: 40px;
+  }
+
+  &__text {
+    width: 100%;
+  }
+}

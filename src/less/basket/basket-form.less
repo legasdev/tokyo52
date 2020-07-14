@@ -1,0 +1,23 @@
+.basket-form {
+  display: flex;
+
+  &--styles {
+    flex-direction: column;
+    width: 100%;
+    margin-top: 146px;
+  }
+
+  &__title {
+    padding-left: 30px;
+    margin-bottom: 80px;
+
+    .adaptive(@screen-620; {
+      margin-bottom: 40px;
+    });
+  }
+
+  &__form {
+    max-width: 714px;
+    align-self: center;
+  }
+}
