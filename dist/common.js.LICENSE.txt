@@ -1,9 +1,0 @@
-/*! @babel/polyfill */
-
-/*! no exports provided */
-
-/*! whatwg-fetch */
-
-/*!**************************!*\
-  !*** ./src/js/common.js ***!
-  \**************************/

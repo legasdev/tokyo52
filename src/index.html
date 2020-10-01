@@ -38,16 +38,16 @@
                     <span>Меню</span>
                     <div class="menu__inner">
                         <div class="menu__inner-wrapper">
-                            <a class="link link--styles link--span" href="/menu.html" title="Роллы и суши"><span>Роллы и суши</span></a>
-                            <a class="link link--styles link--span" href="/menu.html" title="Сеты"><span>Сеты</span></a>
-                            <a class="link link--styles link--span" href="/menu.html" title="Горячие роллы"><span>Горячие роллы</span></a>
-                            <a class="link link--styles link--span" href="/menu.html" title="Салаты"><span>Салаты</span></a>
-                            <a class="link link--styles link--span" href="/menu.html" title="Горячие блюда"><span>Горячие блюда</span></a>
-                            <a class="link link--styles link--span" href="/menu.html" title="Супы"><span>Супы</span></a>
-                            <a class="link link--styles link--span" href="/menu.html" title="Фаст-фуд"><span>Фаст-фуд</span></a>
-                            <a class="link link--styles link--span" href="/menu.html" title="Детское меню"><span>Детское меню</span></a>
-                            <a class="link link--styles link--span" href="/menu.html" title="Напитки"><span>Напитки</span></a>
-                            <a class="link link--styles link--span" href="/menu.html" title="Десерты"><span>Десерты</span></a>
+                            <a class="link link--styles link--span" href="/menu" title="Роллы и суши"><span>Роллы и суши</span></a>
+                            <a class="link link--styles link--span" href="/menu" title="Сеты"><span>Сеты</span></a>
+                            <a class="link link--styles link--span" href="/menu" title="Горячие роллы"><span>Горячие роллы</span></a>
+                            <a class="link link--styles link--span" href="/menu" title="Салаты"><span>Салаты</span></a>
+                            <a class="link link--styles link--span" href="/menu" title="Горячие блюда"><span>Горячие блюда</span></a>
+                            <a class="link link--styles link--span" href="/menu" title="Супы"><span>Супы</span></a>
+                            <a class="link link--styles link--span" href="/menu" title="Фаст-фуд"><span>Фаст-фуд</span></a>
+                            <a class="link link--styles link--span" href="/menu" title="Детское меню"><span>Детское меню</span></a>
+                            <a class="link link--styles link--span" href="/menu" title="Напитки"><span>Напитки</span></a>
+                            <a class="link link--styles link--span" href="/menu" title="Десерты"><span>Десерты</span></a>
                         </div>
                     </div>
                 </div>
@@ -58,15 +58,14 @@
                 <img class="header__logo-img" src="/img/logo.png" srcset="/img/logo.png 1x, /img/logo@2x.png 2x" alt="Суши-бар Токио" />
             </a>
             <div class="header__info">
-                <p class="header__info-wrapper header__info-wrapper--row">с&nbsp;<time datetime="09:00:00">9:00</time>&nbsp;до&nbsp;<time datetime="23:00:00">23:00</time></p>
+                <p class="header__info-wrapper header__info-wrapper--row">вс-чт 10:00-22:00<br>пт-сб 10:00-0:00</p>
                 <div class="header__info-wrapper header__info-wrapper--margin-left-60">
-                    <a class="link link--styles" href="tel:89211558568">+7 (921) 155-85-68</a>
-                    <a class="link link--styles" href="mailto:mail@mail.ru">mail@mail.ru</a>
+                    <a class="link link--styles" href="tel:89601607700">+7 (960) 160-77-00</a>
                 </div>
-                <div class="header__info-wrapper  header__info-wrapper--margin-left-50">
-                    <a class="link link--styles" href="#">Корзина</a>
-                    <a class="link link--styles" href="mailto:mail@mail.ru">0 шт. / 0.-</a>
-                </div>
+                <a href="/busket" class="header__info-wrapper  header__info-wrapper--margin-left-50">
+                    <span class="link link--styles">Корзина</span>
+                    <span class="link link--styles">0 шт. / 0.-</span>
+                </a>
             </div>
             <div class="mobile-menu mobile-menu--styles">
                 <input class="mobile-menu__checkbox" type="checkbox" id="mobile-menu">
@@ -101,7 +100,7 @@
     <main class="content content--styles">
         <div class="promo promo--styles">
             <div class="promo__info">
-                <p class="promo__text">Аппетитные роллы и суши – идеальный вариант для поклонников здорового питания, экзотических изысков и тех, кто сидит на диете.</p>
+                <p class="promo__text">Простота, свежесть продуктов, искусство украшения - вот основы японской кухни.</p>
                 <p class="promo__text promo__text--margin-top">Высокая квалификация наших сушистов не оставят равнодушным даже самого утонченного гурмана.</p>
                 <div class="promo__btns">
                     <a href="#" class="btn btn--styles btn--main" title="Заказать роллы в Суши-баре Токио">
@@ -158,7 +157,7 @@
                                         <button class="card__input-btn card__input-btn--bottom"><span></span><span></span></button>
                                     </div>
                                 </div>
-                                <button class="btn btn--styles btn--stroke btn--min">В корзину</button>
+                                <button class="btn btn--styles btn--stroke btn--min card__add-btn">В корзину</button>
                             </div>
                         </div>
                     </div>
@@ -202,7 +201,7 @@
                                         <button class="card__input-btn card__input-btn--bottom"><span></span><span></span></button>
                                     </div>
                                 </div>
-                                <button class="btn btn--styles btn--stroke btn--min">В корзину</button>
+                                <button class="btn btn--styles btn--stroke btn--min card__add-btn">В корзину</button>
                             </div>
                         </div>
                     </div>
@@ -311,88 +310,79 @@
                     </div>
                     <div class="menu-grid__label">
                         <p class="menu-grid__label-text">Суши и роллы</p>
-                        <p class="menu-grid__label-info">Читаю меню в суши-баре. Я не уверена, что сейчас не матерюсь!</p>
                     </div>
                 </a>
                 <a href="#" class="menu-grid__wrapper">
                     <div class="menu-grid__inner">
-                        <img class="menu-grid__img" src="img/home/sets@2x.png" alt="Сеты из роллов">                        
+                        <img class="menu-grid__img" src="img/home/sets@2x.png" alt="Сеты из роллов">
                     </div>
                     <div class="menu-grid__label">
                         <p class="menu-grid__label-text">Сеты</p>
-                        <p class="menu-grid__label-info">Читаю меню в суши-баре. Я не уверена, что сейчас не матерюсь!</p>
                     </div>
                 </a>
                 <a href="#" class="menu-grid__wrapper">
                     <div class="menu-grid__inner">
-                        <img class="menu-grid__img" src="img/home/rolls_hot@2x.png" alt="Горячие роллы">                        
+                        <img class="menu-grid__img" src="img/home/rolls_hot@2x.png" alt="Горячие роллы">
                     </div>
                     <div class="menu-grid__label">
                         <p class="menu-grid__label-text">Горячие роллы</p>
-                        <p class="menu-grid__label-info">Читаю меню в суши-баре. Я не уверена, что сейчас не матерюсь!</p>
                     </div>
                 </a>
                 <a href="#" class="menu-grid__wrapper">
                     <div class="menu-grid__inner">
-                        <img class="menu-grid__img" src="img/home/salad@2x.png" alt="Салаты">                        
+                        <img class="menu-grid__img" src="img/home/salad@2x.png" alt="Салаты">
                     </div>
                     <div class="menu-grid__label">
                         <p class="menu-grid__label-text">Салаты</p>
-                        <p class="menu-grid__label-info">Читаю меню в суши-баре. Я не уверена, что сейчас не матерюсь!</p>
                     </div>
                 </a>
                 <a href="#" class="menu-grid__wrapper">
                     <div class="menu-grid__inner">
-                        <img class="menu-grid__img" src="img/home/hot_meat@2x.png" alt="Горячие блюда">                        
+                        <img class="menu-grid__img" src="img/home/hot_meat@2x.png" alt="Горячие блюда">
                     </div>
                     <div class="menu-grid__label">
                         <p class="menu-grid__label-text">Горячие блюда</p>
-                        <p class="menu-grid__label-info">Читаю меню в суши-баре. Я не уверена, что сейчас не матерюсь!</p>
                     </div>
                 </a>
                 <a href="#" class="menu-grid__wrapper">
                     <div class="menu-grid__inner">
-                        <img class="menu-grid__img" src="img/home/sup@2x.png" alt="Супы">                        
+                        <img class="menu-grid__img" src="img/home/sup@2x.png" alt="Супы">
                     </div>
                     <div class="menu-grid__label">
                         <p class="menu-grid__label-text">Супы</p>
-                        <p class="menu-grid__label-info">Читаю меню в суши-баре. Я не уверена, что сейчас не матерюсь!</p>
                     </div>
                 </a>
                 <a href="#" class="menu-grid__wrapper">
                     <div class="menu-grid__inner">
-                        <img class="menu-grid__img" src="img/home/fastfood@2x.png" alt="Фаст-фуд">                        
+                        <img class="menu-grid__img" src="img/home/fastfood@2x.png" alt="Фаст-фуд">
                     </div>
                     <div class="menu-grid__label">
                         <p class="menu-grid__label-text">Фаст-фуд</p>
-                        <p class="menu-grid__label-info">Читаю меню в суши-баре. Я не уверена, что сейчас не матерюсь!</p>
                     </div>
                 </a>
                 <a href="#" class="menu-grid__wrapper">
                     <div class="menu-grid__inner">
-                        <img class="menu-grid__img" src="img/home/child@2x.png" alt="Детское меню">                        
+                        <img class="menu-grid__img" src="img/home/child@2x.png" alt="Детское меню">
                     </div>
                     <div class="menu-grid__label">
                         <p class="menu-grid__label-text">Детское меню</p>
-                        <p class="menu-grid__label-info">Читаю меню в суши-баре. Я не уверена, что сейчас не матерюсь!</p>
                     </div>
                 </a>
                 <a href="#" class="menu-grid__wrapper">
                     <div class="menu-grid__inner">
-                        <img class="menu-grid__img" src="img/home/coffee@2x.png" alt="Напитки">                        
+                        <img class="menu-grid__img" src="img/home/coffee@2x.png" alt="Напитки">
                     </div>
                     <div class="menu-grid__label">
                         <p class="menu-grid__label-text">Напитки</p>
-                        <p class="menu-grid__label-info">Читаю меню в суши-баре. Я не уверена, что сейчас не матерюсь!</p>
                     </div>
                 </a>
                 <a href="#" class="menu-grid__wrapper menu-grid__wrapper--big">
                     <div class="menu-grid__inner">
-                        <img class="menu-grid__img" src="img/home/desert@2x.png" alt="Десерты">                        
+                        <img class="menu-grid__img" src="img/home/desert@2x.png" alt="Десерты">
                     </div>
                     <div class="menu-grid__label">
                         <p class="menu-grid__label-text">Десерты</p>
-                        <p class="menu-grid__label-info">Читаю меню в суши-баре. Я не уверена, что сейчас не матерюсь!</p>
+                        <!-- <p class="menu-grid__label-info">Читаю меню в суши-баре. Я не уверена, что сейчас не матерюсь!</p> -->
                     </div>
                 </a>
             </div>
@@ -402,8 +392,7 @@
             <h2 class="h1">Напишите нам</h2>
             <div class="about__wrapper">
                 <div class="about__info">
-                    <p class="about__text">Решили побаловать себя и своих домочадцев вкусным, изысканным блюдом? Хотите перекусить, но не испытываете желания тратить время на приготовление обеда? Тогда вам стоит заказать пиццу. Любимая миллионами людей по всему миру пицца теперь всё чаще продается на доставке. И это не удивительно, ведь временные затраты стали одним из важнейших критериев в современном мире, а среди многообразия всевозможных вкусов любой найдет именно то, что ему нужно! Пицца Рикка дает вам возможность купить пиццу в городн Нижний Новгород, не выходя из дома.</p>
-                    <p class="about__text">Мы предлагаем вам заказать пиццу с доставкой на дом. Быстрая доставка пиццы на дом стала еще удобнее. Ведь все, что вам нужно сделать, это позвонить нам по телефону 8 (831) 260-10-60 или заказать пиццу онлайн на нашем сайте. </p>
+                    <p class="about__text">Если у Вас возникли вопросы, предложения или пожелания, Вы всегда можете написать нам. Мы всегда рады пообщаться.</p>
                 </div>
                 <form class="form form--styles about__form js-form">
                     <div class="form__wrapper">
@@ -453,6 +442,8 @@
         </section>
     </main>
 
+    <div class="warn">Сайт работает в тестовом режиме.</div>
+
     <footer class="footer footer--styles">
         <div class="footer__wrapper">
             <div class="footer__left">
@@ -475,11 +466,11 @@
                 <p>Позвоните нам по телефону <a class="link link--styles" href="tel:81234567890">+7 (123) 456-78-90</a>, и мы с радостью выполним ваш заказ!</p>
             </div>
             <div class="footer__info">
-                <address>Урень, ул. Ленина, 13/1</address>
+                <address>Урень, ул. Коммунистическая, д. 3</address>
                 <div class="footer__info-tel">
-                    <a class="link link--styles link--gray" href="tel:81234567890">+7 (123) 456-78-90</a>,  <a class="link link--styles link--gray" href="tel:81234567890">+7 (123) 456-78-90</a>
+                    <a class="link link--styles link--gray" href="tel:89601607700">+7 (960) 160-77-00</a>,  <a class="link link--styles link--gray" href="tel:88315429050">+7 (831) 542-90-50</a>
                 </div>
-                <p class="footer__info-time">Время работы: <time datetime="09:00:00">9:00</time>-<time datetime="23:00:00">23:00</time></p>
+                <p class="footer__info-time">Время работы доставки:<br>вс-чт 10:00-22:00<br>пт-сб 10:00-0:00</p>
             </div>
         </div>
         <div class="footer__copyright">

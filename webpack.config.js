@@ -27,7 +27,7 @@ const
     nameFiles = (firstName, typeFile) =>
         isDevelopment
             ? `[${firstName}].${typeFile}`
-            : `[${firstName}].[contenthash].${typeFile}`; // .[contenthash]
+            : `[${firstName}].${typeFile}`; // .[contenthash]
 
 const cssLoaders = (extra) => {
     const loaders = [
@@ -105,6 +105,11 @@ module.exports = {
             './src/less/basket/index.less',
             './src/js/basket/index.js'
         ],
+        delivery: [
+            './src/less/delivery' +
+            '/index.less',
+            './src/js/delivery/index.js'
+        ],
         app: [
             './src/less/app/index.less',
             '@babel/polyfill',
@@ -112,13 +117,12 @@ module.exports = {
         ]
     },
     output: isProduction ? {
-        path: path.resolve(__dirname, '../sushi_backend/src/main/resources/static/build/'),
+        path: path.resolve(__dirname, './build/'),
         publicPath: '/build/',
         filename: nameFiles('name', 'js'),
         chunkFilename: nameFiles('name', 'js')
     } : {
-        path: path.resolve(__dirname, '../sushi_backend/src/main/resources/static/build/'),
-        publicPath: '/build/',
+        publicPath: '/',
         filename: nameFiles('name', 'js'),
         chunkFilename: nameFiles('name', 'js')
     },
@@ -165,7 +169,7 @@ module.exports = {
             }
         }),
         new HtmlWebpackPlugin({
-            filename: 'menu.html',
+            filename: isProduction ? 'menu.html' : 'menu',
             template: './src/menu.html',
             chunks: ['common', 'menu'],
             minify: {
@@ -173,7 +177,7 @@ module.exports = {
             }
         }),
         new HtmlWebpackPlugin({
-            filename: 'stocks.html',
+            filename: isProduction ? 'stocks.html' : 'stocks',
             template: './src/stocks.html',
             chunks: ['common', 'stocks'],
             minify: {
@@ -181,7 +185,7 @@ module.exports = {
             }
         }),
         new HtmlWebpackPlugin({
-            filename: 'contacts.html',
+            filename: isProduction ? 'contacts.html' : 'contacts',
             template: './src/contacts.html',
             chunks: ['common', 'contacts'],
             minify: {
@@ -189,7 +193,7 @@ module.exports = {
             }
         }),
         new HtmlWebpackPlugin({
-            filename: 'basket.html',
+            filename: isProduction ? 'basket.html' : 'basket',
             template: './src/basket.html',
             chunks: ['common', 'basket'],
             minify: {
@@ -197,7 +201,15 @@ module.exports = {
             }
         }),
         new HtmlWebpackPlugin({
-            filename: 'admin.html',
+            filename: isProduction ? 'delivery.html' : 'delivery',
+            template: './src/delivery.html',
+            chunks: ['common', 'delivery'],
+            minify: {
+                collapseWhitespace: false
+            }
+        }),
+        new HtmlWebpackPlugin({
+            filename: isProduction ? 'admin.html' : 'admin',
             template: './src/admin.html',
             chunks: ['app'],
             minify: {
@@ -269,7 +281,6 @@ module.exports = {
                 options: {
                     name: '[name].[contenthash].[ext]',
                     outputPath: 'img',
-                    publicPath: 'img',
                 },
             },
             {
