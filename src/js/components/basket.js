@@ -25,7 +25,7 @@ const Basket = {
         this._count = 0;
         this._list = JSON.parse(stringFromStorage) || [];
 
-        !stringFromStorage && localStorage.setItem(this._name, '[]');
+        this._list.length === 0 && localStorage.setItem(this._name, '[]');
 
         // Templates
         this._drawInfoTemplate = '{/amount/} шт. / {/price/}.-';
@@ -165,7 +165,7 @@ const Basket = {
      *
      */
     _saveInStorage() {
-        localStorage.setItem(this.name, JSON.stringify(this._list));
+        localStorage.setItem(this._name, JSON.stringify(this._list));
     },
 
     /**
@@ -174,7 +174,7 @@ const Basket = {
      * @returns {Object[]}
      */
     _loadFromStorage() {
-        return JSON.parse(localStorage.getItem(this.name));
+        return JSON.parse(localStorage.getItem(this._name));
     },
 
 

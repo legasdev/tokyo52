@@ -63,10 +63,10 @@
                 <a class="link link--styles" href="tel:89211558568">+7 (921) 155-85-68</a>
                 <a class="link link--styles" href="mailto:mail@mail.ru">mail@mail.ru</a>
             </div>
-            <div class="header__info-wrapper  header__info-wrapper--margin-left-50">
-                <a class="link link--styles" href="#">Корзина</a>
-                <a class="link link--styles" href="mailto:mail@mail.ru">0 шт. / 0.-</a>
-            </div>
+            <a href="/basket" class="header__info-wrapper  header__info-wrapper--margin-left-50">
+                <span class="link link--styles">Корзина</span>
+                <span class="link link--styles js-t-basket-info">0 шт. / 0.-</span>
+            </a>
         </div>
         <div class="mobile-menu mobile-menu--styles">
             <input class="mobile-menu__checkbox" type="checkbox" id="mobile-menu">
@@ -79,7 +79,51 @@
     <h1 class="h1">Корзина</h1>
     <div class="list list--styles">
         <div class="list__wrapper">
-            <p>В корзине пусто.</p>
+        <!--<p>В корзине пусто.</p>-->
+            <section class="card card--styles card--margin-bottom">
+                <div class="card__wrapper">
+                    <img class="card__img" src="img/productions/rolls/prod.png" srcset="img/productions/rolls/prod.png 1x, img/productions/rolls/prod@2x.png 2x" alt="Ролл «Филадельфия» №1" />
+                    <h3 class="h3 card__title">Ролл «Филадельфия» №1</h3>
+                    <p class="card__structure">Филе тунца, обжаренное в черном перце, лосось, сливочный сыр, перец Халапенью, авокадо, айсберг, томат огурец, соус спайси.</p>
+                    <div class="card__options">
+                        <div class="card__option">
+                            <input class="card__option-input" name="contact" type="checkbox" id="sushi_1">
+                            <label class="card__option-label" for="sushi_1">
+                                <p class="card__option-price">220.-</p>
+                                <p class="card__option-description">опаленный</p>
+                            </label>
+                        </div>
+                        <div class="card__option">
+                            <input class="card__option-input" name="contact" type="checkbox" id="sushi_2">
+                            <label class="card__option-label" for="sushi_2">
+                                <p class="card__option-price">230.-</p>
+                                <p class="card__option-description">«хот»</p>
+                            </label>
+                        </div>
+                        <div class="card__option">
+                            <input class="card__option-input" name="contact" type="checkbox" id="sushi_3">
+                            <label class="card__option-label" for="sushi_3">
+                                <p class="card__option-price">290.-</p>
+                                <p class="card__option-description">«биг»</p>
+                            </label>
+                        </div>
+                    </div>
+                    <p class="card__weight">1/260 гр.</p>
+                    <div class="card__footer">
+                        <p class="card__price">200.-</p>
+                        <div class="card__ui">
+                            <div class="card__input">
+                                <p class="card__input-num">1</p>
+                                <div class="card__input-ui">
+                                    <button class="card__input-btn"><span></span><span></span></button>
+                                    <button class="card__input-btn card__input-btn--bottom"><span></span><span></span></button>
+                                </div>
+                            </div>
+                            <button class="btn btn--styles btn--stroke btn--min card__add-btn">В корзину</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
         <div class="list__info">
             <div class="list__price">Сумма: <span class="list__price-num">0</span>.-</div>

@@ -21,6 +21,11 @@ const
             this.buttonAdd = domNode.querySelector('.card__add-btn');
             this.priceDiv = domNode.querySelector('.card__price');
             this.amountDiv = domNode.querySelector('.card__input-num');
+            this.img = {
+                src: domNode.querySelector('.card__img').src,
+                srcset: domNode.querySelector('.card__img').srcset,
+            };
+            this.weight = domNode.querySelector('.card__weight').innerText;
 
             this.name = this.node.querySelector('card__title');
             this.structure = this.node.querySelector('card__structure');
@@ -101,7 +106,7 @@ const
         },
 
         setAmountText(newAmount) {
-            this.amountDiv.innerText = newAmount || 1;
+            this.amountDiv.innerText = newAmount || 0;
         },
 
         // Добавление в корзину
@@ -115,6 +120,9 @@ const
                     name: this.price[this.currentLabel].name,
                     price: this.price[this.currentLabel].value,
                 },
+                anyOptions: {...this.price},
+                img: {...this.img},
+                weight: this.weight,
             })
         },
     };
