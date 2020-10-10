@@ -9,32 +9,39 @@ import Basket from '@js/components/basket';
 const
     basket = new Object(Basket).init();
 
+let
+    cardsList = [];
+
 const
     Card = {
 
         init(domNode, basket) {
+
+            // DOMNode
             this.node = domNode;
             this.basket = basket;
-            this.labelsOptions = [...domNode.querySelectorAll('.card__option-label')];
-            this.buttonAmountPlus = domNode.querySelector('.card__input-btn');
-            this.buttonAmountMinus = domNode.querySelector('.card__input-btn--bottom');
-            this.buttonAdd = domNode.querySelector('.card__add-btn');
-            this.priceDiv = domNode.querySelector('.card__price');
-            this.amountDiv = domNode.querySelector('.card__input-num');
+            this.labelsOptions = [...this.node.querySelectorAll('.card__option-label')];
+            this.buttonAmountPlus = this.node.querySelector('.card__input-btn');
+            this.buttonAmountMinus = this.node.querySelector('.card__input-btn--bottom');
+            this.buttonAdd = this.node.querySelector('.card__add-btn');
+            this.priceDiv = this.node.querySelector('.card__price');
+            this.amountDiv = this.node.querySelector('.card__input-num');
             this.img = {
-                src: domNode.querySelector('.card__img').src,
-                srcset: domNode.querySelector('.card__img').srcset,
+                src: this.node.querySelector('.card__img').src,
+                srcset: this.node.querySelector('.card__img').srcset,
             };
-            this.weight = domNode.querySelector('.card__weight').innerText;
+            this.weight = this.node.querySelector('.card__weight').innerText;
 
             this.name = this.node.querySelector('card__title');
             this.structure = this.node.querySelector('card__structure');
-            this.amount = 1;
+
+            // Info
+            this.amount = parseInt(this.amountDiv.innerText) || 1;
             this.currentLabel = 'default';
             this.price = {
                 default: {
                     name: 'Стандарт',
-                    value: parseInt(this.priceDiv.innerText)
+                    value: parseInt(`${parseInt(this.priceDiv.innerText) / parseInt(this.amountDiv.innerText)}`)
                 },
                 ...this.labelsOptions.reduce((acc, item) => ({
                     ...acc,
@@ -45,20 +52,54 @@ const
                 }), {})
             };
 
-            this.onChangeOption = this.onChangeOption.bind(this);
-            this.onClickAmount = this.onClickAmount.bind(this);
-            this.setPriceText = this.setPriceText.bind(this);
-            this.setAmountText = this.setAmountText.bind(this);
+            // Private methods
+            this._setPriceText = this._setPriceText.bind(this);
+            this._setAmountText = this._setAmountText.bind(this);
+            this._onClickAmount = this._onClickAmount.bind(this);
+            this._onChangeOption = this._onChangeOption.bind(this);
+
+            // Public methods
             this.addItem = this.addItem.bind(this);
+            this.setPrice = this.setPrice.bind(this);
 
-            this.labelsOptions.forEach(label => label.addEventListener('click', this.onChangeOption));
+            // Add events
+            this.labelsOptions.forEach(label => label.addEventListener('click', this._onChangeOption));
 
-            this.buttonAmountPlus.addEventListener('click', () => this.onClickAmount(true));
-            this.buttonAmountMinus.addEventListener('click', () => this.onClickAmount(false));
+            this.buttonAmountPlus.addEventListener('click', () => this._onClickAmount(true));
+            this.buttonAmountMinus.addEventListener('click', () => this._onClickAmount(false));
             this.buttonAdd.addEventListener('click', this.addItem);
+
+            return this;
         },
 
-        onChangeOption(event) {
+
+        /** PRIVATE **/
+
+        /**
+         * Вывод информации по цене
+         *
+         * @param newPrice
+         */
+        _setPriceText(newPrice) {
+            this.priceDiv.innerText = `${newPrice}.-`;
+        },
+
+        /**
+         * Отобразить новое количество товара
+         *
+         * @param newAmount
+         * @private
+         */
+        _setAmountText(newAmount) {
+            this.amountDiv.innerText = newAmount || 0;
+        },
+
+        /**
+         * Выбор дополнительной опции продукта
+         *
+         * @param event
+         */
+        _onChangeOption(event) {
             const
                 target = event.target.hasAttribute('for')
                     ? event.target
@@ -76,7 +117,7 @@ const
             const
                 priceToPrint = this.price[this.currentLabel].value * this.amount;
 
-            this.setPriceText(priceToPrint);
+            this._setPriceText(priceToPrint);
 
             this.labelsOptions.forEach(label => {
                 label.parentNode.querySelector('input').checked = false;
@@ -85,7 +126,12 @@ const
             input.checked = isChecked;
         },
 
-        onClickAmount(isPlus) {
+        /**
+         * Изменение количества продукта
+         *
+         * @param isPlus
+         */
+        _onClickAmount(isPlus) {
 
             this.amount = isPlus
                 ? this.amount + 1
@@ -93,27 +139,25 @@ const
                     ? 1
                     : this.amount - 1;
 
-            this.setAmountText(this.amount);
+            this._setAmountText(this.amount);
 
             const
                 priceToPrint = this.price[this.currentLabel].value * this.amount;
 
-            this.setPriceText(priceToPrint);
+            this._setPriceText(priceToPrint);
         },
 
-        setPriceText(newPrice) {
-            this.priceDiv.innerText = `${newPrice}.-`;
-        },
 
-        setAmountText(newAmount) {
-            this.amountDiv.innerText = newAmount || 0;
-        },
+        /** PUBLIC **/
 
-        // Добавление в корзину
+        /**
+         * Добавить товар в корзину
+         *
+         */
         addItem() {
-            basket.addItem({
-                name: this.node.querySelector('.card__title').innerText,
-                structure: this.node.querySelector('.card__structure').innerText,
+            this.basket.addItem({
+                name: this.name.innerText,
+                structure: this.structure.innerText,
                 price: this.price[this.currentLabel].value * this.amount,
                 amount: this.amount,
                 option: {
@@ -125,8 +169,33 @@ const
                 weight: this.weight,
             })
         },
+
+        /**
+         * Обновление информации о цене товара
+         *
+         * @param priceObject - Объект цены
+         */
+        setPrice(priceObject) {
+            priceObject && (this.price = {
+                ...this.price,
+                ...priceObject,
+            });
+        },
     };
 
-const
-    cards = [...document.querySelectorAll('.card')]
+/**
+ * Обновляет список продуктов на странице
+ *
+ */
+export function updateCardsList() {
+    cardsList = [...document.querySelectorAll('.card')]
         .map(card => Object.create(Card).init(card, basket));
+}
+
+/**
+ * Возращает копию списка товаров на странице
+ *
+ */
+export function getCardsList() {
+    return [...cardsList];
+}

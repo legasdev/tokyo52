@@ -6,4 +6,6 @@
 
 import '@js/components/header';
 import '@js/components/form';
-import '@js/components/card';
+import {updateCardsList} from '@js/components/card';
+
+updateCardsList();
