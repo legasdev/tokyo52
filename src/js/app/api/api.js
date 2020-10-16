@@ -1,4 +1,4 @@
-import Instance from './instance'
+import Instance from './Instance'
 
 /**
  * Добавляет токен к заголовкам

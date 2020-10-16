@@ -5,6 +5,7 @@
  */
 
 import Basket from '@js/components/basket';
+import drawBasket from "@js/basket/drawBasket";
 
 const
     basket = new Object(Basket).init();
@@ -15,29 +16,35 @@ let
 const
     Card = {
 
-        init(domNode, basket) {
+        init(domNode, basket, isAutoSave) {
 
             // DOMNode
             this.node = domNode;
             this.basket = basket;
+            this.isAutoSave = isAutoSave;
+            this.customId = Math.floor(Math.random() * Date.now());
+
             this.labelsOptions = [...this.node.querySelectorAll('.card__option-label')];
+            this.priceDiv = this.node.querySelector('.card__price');
+            this.amountDiv = this.node.querySelector('.card__input-num');
+
             this.buttonAmountPlus = this.node.querySelector('.card__input-btn');
             this.buttonAmountMinus = this.node.querySelector('.card__input-btn--bottom');
             this.buttonAdd = this.node.querySelector('.card__add-btn');
-            this.priceDiv = this.node.querySelector('.card__price');
-            this.amountDiv = this.node.querySelector('.card__input-num');
+            this.buttonRemove = this.node.querySelector('.card__remove');
+
             this.img = {
                 src: this.node.querySelector('.card__img').src,
                 srcset: this.node.querySelector('.card__img').srcset,
             };
             this.weight = this.node.querySelector('.card__weight').innerText;
 
-            this.name = this.node.querySelector('card__title');
-            this.structure = this.node.querySelector('card__structure');
+            this.nameNode = this.node.querySelector('.card__title');
+            this.structure = this.node.querySelector('.card__structure');
 
             // Info
             this.amount = parseInt(this.amountDiv.innerText) || 1;
-            this.currentLabel = 'default';
+            this.currentLabel = this.node.querySelector('input[checked]')?.id || 'default';
             this.price = {
                 default: {
                     name: 'Стандарт',
@@ -55,11 +62,15 @@ const
             // Private methods
             this._setPriceText = this._setPriceText.bind(this);
             this._setAmountText = this._setAmountText.bind(this);
+            this._addToBasket = this._addToBasket.bind(this);
+            this._isAutoUpdate = this._isAutoUpdate.bind(this);
+            this._createObjectItem = this._createObjectItem.bind(this);
             this._onClickAmount = this._onClickAmount.bind(this);
             this._onChangeOption = this._onChangeOption.bind(this);
 
             // Public methods
             this.addItem = this.addItem.bind(this);
+            this.removeItem = this.removeItem.bind(this);
             this.setPrice = this.setPrice.bind(this);
 
             // Add events
@@ -67,7 +78,8 @@ const
 
             this.buttonAmountPlus.addEventListener('click', () => this._onClickAmount(true));
             this.buttonAmountMinus.addEventListener('click', () => this._onClickAmount(false));
-            this.buttonAdd.addEventListener('click', this.addItem);
+            this.buttonAdd?.addEventListener('click', this.addItem);
+            this.buttonRemove?.addEventListener('click', this.removeItem);
 
             return this;
         },
@@ -124,6 +136,13 @@ const
             });
 
             input.checked = isChecked;
+
+            if (this.isAutoSave) {
+                console.log('ss')
+                this.basket.changeOptionItem(this._createObjectItem());
+                drawBasket();
+                updateCardsList(true);
+            }
         },
 
         /**
@@ -145,18 +164,28 @@ const
                 priceToPrint = this.price[this.currentLabel].value * this.amount;
 
             this._setPriceText(priceToPrint);
+
+            this._isAutoUpdate();
         },
 
-
-        /** PUBLIC **/
+        /**
+         * Добавляет данный товар в корзину
+         *
+         * @private
+         */
+        _addToBasket() {
+            this.basket.addItem(this._createObjectItem());
+        },
 
         /**
-         * Добавить товар в корзину
+         * Возвращает объект товара для корзины
          *
+         * @private
          */
-        addItem() {
-            this.basket.addItem({
-                name: this.name.innerText,
+        _createObjectItem() {
+            return ({
+                id: this.customId,
+                name: this.nameNode.innerText,
                 structure: this.structure.innerText,
                 price: this.price[this.currentLabel].value * this.amount,
                 amount: this.amount,
@@ -168,6 +197,43 @@ const
                 img: {...this.img},
                 weight: this.weight,
             })
+        },
+
+        /**
+         * Обновить товар и карточки
+         *
+         * @private
+         */
+        _isAutoUpdate() {
+            if (this.isAutoSave) {
+                this._addToBasket();
+                drawBasket();
+                updateCardsList(true);
+            }
+        },
+
+        /** PUBLIC **/
+
+        /**
+         * Добавить товар в корзину
+         *
+         */
+        addItem() {
+            this._addToBasket();
+        },
+
+        /**
+         * Удалить товар из корзины
+         *
+         */
+        removeItem() {
+            this.basket.removeItem({
+                name: this.nameNode.innerText,
+                optionName: this.price[this.currentLabel].name,
+            });
+
+            drawBasket();
+            updateCardsList(true);
         },
 
         /**
@@ -186,10 +252,11 @@ const
 /**
  * Обновляет список продуктов на странице
  *
+ * @param {Boolean} isBasketPage - Карточки в корзине
  */
-export function updateCardsList() {
+export function updateCardsList(isBasketPage=false) {
     cardsList = [...document.querySelectorAll('.card')]
-        .map(card => Object.create(Card).init(card, basket));
+        .map(card => Object.create(Card).init(card, basket, isBasketPage));
 }
 
 /**

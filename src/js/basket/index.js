@@ -7,23 +7,17 @@
 import '@js/components/header';
 import {updateCardsList, getCardsList} from '@js/components/card';
 
-import './drawBasket';
+import drawBasket from './drawBasket';
+import './paymentForm';
 
-updateCardsList();
+drawBasket();
+updateCardsList(true);
 
 const
-    cardsList = getCardsList(),
-    listItems = window.__TokyoBasket__.getList();
-
-console.log(listItems)
-console.log(cardsList)
+    cardsList = getCardsList();
 
 cardsList.forEach(item => {
-    console.log(item)
     item.setPrice({
-        default: {
-            name: "Стандарт",
-            value: 200
-        }
+        default: {...item.price.default}
     });
-})
+});

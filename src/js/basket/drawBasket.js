@@ -4,37 +4,41 @@
  *
  */
 
-const
-    wrapperNode = document.querySelector('.list__wrapper'),
-    listItems = window.__TokyoBasket__.getList();
-
-listItems.length > 0 && (wrapperNode.innerHTML = '');
-
-listItems.forEach(item => {
+function drawBasket() {
     const
-        newSection = document.createElement('section');
+        wrapperNode = document.querySelector('.list__wrapper'),
+        listItems = window.__TokyoBasket__.getList();
 
-    newSection.classList.add('card');
-    newSection.classList.add('card--styles');
-    newSection.classList.add('card--margin-bottom');
+    listItems.length > 0
+        ? (wrapperNode.innerHTML = '')
+        : (wrapperNode.innerHTML = '<p>В корзине пусто.</p>');
 
-    const
-        optionsList = Object.keys(item.anyOptions).map(keyOption => ({
-            ...item.anyOptions[keyOption],
-            option: keyOption,
-            isSelected: item.anyOptions[keyOption].name === item.option.name,
-        })).filter(option => option.name !== 'Стандарт');
+    listItems.forEach(item => {
+        const
+            newSection = document.createElement('section');
 
-    newSection.innerHTML = `
+        newSection.classList.add('card');
+        newSection.classList.add('card--styles');
+        newSection.classList.add('card--margin-bottom');
+
+        const
+            optionsList = Object.keys(item.anyOptions).map(keyOption => ({
+                ...item.anyOptions[keyOption],
+                option: keyOption,
+                isSelected: item.anyOptions[keyOption].name === item.option.name,
+            })).filter(option => option.name !== 'Стандарт');
+
+        newSection.innerHTML = `
         <div class="card__wrapper">
+            <button class="card__remove"><span></span><span></span></button>
             <img class="card__img" src="${item.img.src}" srcset="${item.img.srcset}" alt="${item.name}" />
             <h3 class="h3 card__title">${item.name}</h3>
             <p class="card__structure">${item.structure}</p>
             <div class="card__options">
                 ${optionsList.reduce((optionsString, {option, name, value, isSelected}) => optionsString + `
                     <div class="card__option">
-                        <input class="card__option-input" name="contact" type="checkbox" id="${option}" ${isSelected ? 'checked' : ''}>
-                        <label class="card__option-label" for="${option}">
+                        <input class="card__option-input" name="contact" type="checkbox" id="${option}-${item.option.price}" ${isSelected ? 'checked' : ''}>
+                        <label class="card__option-label" for="${option}-${item.option.price}">
                             <p class="card__option-price">${value}.-</p>
                             <p class="card__option-description">${name}</p>
                         </label>
@@ -52,11 +56,14 @@ listItems.forEach(item => {
                             <button class="card__input-btn card__input-btn--bottom"><span></span><span></span></button>
                         </div>
                     </div>
-                    <button class="btn btn--styles btn--stroke btn--min card__add-btn">В корзину</button>
                 </div>
             </div>
         </div>
     `;
 
-    wrapperNode.appendChild(newSection);
-});
+        wrapperNode.appendChild(newSection);
+    });
+}
+
+export default drawBasket;
+

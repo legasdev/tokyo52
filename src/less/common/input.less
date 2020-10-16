@@ -69,6 +69,19 @@
     transition: transform @tr-fast;
   }
 
+  &__error {
+    position: absolute;
+    right: 6px;
+    bottom: 0;
+    color: var(--color-red);
+    font-size: 12px;
+    text-align: right;
+    transform: translateY(100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity @tr-fast, visibility @tr-fast;
+  }
+
   // Эффекты
 
   &__text:focus + &__label,
@@ -86,7 +99,13 @@
   &__text:focus ~ &__border,
   &__password:focus ~ &__border,
   &__email:focus ~ &__border,
-  &__textarea:focus ~ &__border {
+  &__textarea:focus ~ &__border,
+  &--error > &__border {
     transform: scaleX(1);
+  }
+
+  &--error > &__error {
+    opacity: 1;
+    visibility: visible;
   }
 }

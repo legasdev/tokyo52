@@ -27,12 +27,16 @@
 
     --screen:                   calc(@screen-1440 - @screen-padding);
 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     font-family: var(--font);
-    background-color: var(--color-background);
     color: var(--color-white);
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: var(--color-background);
     background-image: url('~@src/img/background.jpg');
     overflow-x: hidden;
     width: 100%;
@@ -43,15 +47,6 @@
     }
 
     .adaptive(@screen-1440; {
-        --screen: calc(@screen-1280 - @screen-padding);
-    });
-
-    .adaptive(@screen-1280; {
-        --screen: calc(@screen-620 - @screen-padding);
-    });
-
-    .adaptive(@screen-620; {
-        // --screen: calc(@screen-328 - @screen-padding);
         --screen: 100%;
     });
 }
@@ -59,15 +54,14 @@
 .content {
     width: 100%;
     max-width: var(--screen);
-    margin: 0 auto;
 
     // Модификаторы
     
     &--styles {
         padding-top: 328px;
 
-        .adaptive(@screen-620; {
+        .adaptive(@screen-1440; {
             padding: 328px 16px 0;
-        })
+        });
     }
 }

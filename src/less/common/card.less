@@ -42,6 +42,7 @@
     // Элементы
 
     &__wrapper {
+        position: relative;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -235,5 +236,40 @@
             margin-right: 0;
             margin-bottom: 14px;
         });
+    }
+
+    &__remove {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        right: 0; top: 0;
+        width: 22px;
+        height: 22px;
+        cursor: pointer;
+        border-radius: 50%;
+        transform: translate3d(50%, -50%, 0);
+        background-color: var(--color-red);
+        transition: background-color @tr-fast;
+
+        & > span {
+            position: absolute;
+            width: 16px;
+            height: 1px;
+            background-color: var(--color-white);
+            transform: rotate(45deg);
+
+            &:last-child {
+                transform: rotate(-45deg);
+            }
+        }
+
+        &:hover {
+            background-color: var(--color-red-light);
+        }
+
+        &:active {
+            background-color: var(--color-red-dark);
+        }
     }
 }
